@@ -1,0 +1,50 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
+                <li>
+                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">用户管理
+                        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 用户管理</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('role_list')}">用户管理</a> > 添加用户
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" method="post" action="{:U('add_user')}">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">用户账号：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" id="doc-ipt-email-1" name="username" placeholder="请输入用户账号">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">密码：</div>
+                        <div class="you">
+                            <input type="password" class="am-input-sm" id="doc-ipt-email-1" name="password" placeholder="请输入用户密码">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">所属角色：</div>
+                        <div class="you">
+                            <select name="role_id[]" id="">
+                                <option value="">请选择角色</option>
+                                <foreach name="role" item="v">
+                                    <option value="{$v.id}">{$v.name}({$v.remark})</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="submit" class="am-btn am-btn-success am-radius" value="保存" />
+                        </div>
+                    </div>
+                </form>
+            </div>

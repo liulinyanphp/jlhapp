@@ -1,0 +1,51 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</li>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    项目消息推送日志<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">
+                数据管理
+                </ul>
+                <dl class="am-icon-home" style="float: right;">
+                    当前位置：  数据管理 > 项目消息推送日志</a>
+                </dl>
+            </div>
+            <form class="am-form am-g" name="myform" id="myform" method="post">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <th width="240">项目编码</th>
+                    <th width="240">推送的消息编码</th>
+                    <th>推送的消息内容</th>
+                    <th>用户编号</th>
+                    <th>设备编号</th>
+                    <!--<th>设备注册号</th>-->
+                    <th>阅读状态</th>
+                    <th width="180">推送时间</th>
+                </thead>
+                <tbody id="doc-modal-list">
+                <volist name="listData" id="vo">
+                <tr>
+                    <td>{$vo.pro_rand_code}</td>
+                    <td>{$vo.push_rand_code}</td>
+                    <td>{$vo.summary}</td>
+                    <td>{$vo.user_id}</td>
+                    <td>{$vo.udid}</td>
+                    <!--<td>{$vo.registration_id}</td>-->
+                    <td><if condition="$vo['is_readed'] eq 1">已读<else/>未读</if></td>
+                    <td>{$vo.created_date}</td>
+                </tr>
+                </volist>
+                </tbody>
+            </table>
+                <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+            </form>

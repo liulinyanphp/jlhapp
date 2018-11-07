@@ -1,0 +1,58 @@
+<!--预约开始模块-->
+<div class="am-form-group am-cf">
+    <div class="zuo">预约开始时间：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm" name="order_start_time" value="{$htmlData.order_start_time}" id='datetimepicker1' placeholder="请输入预约开始时间">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约结束时间：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm" name="order_end_time" value="{$htmlData.order_end_time}" id="datetimepicker2" placeholder="请输入预约结束时间">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约单位：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="order_fi_unit" value="{$htmlData.order_fi_unit}" placeholder="请选择预约单位">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约总额：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="order_fi_amount" value="{$htmlData.order_fi_amount}" placeholder="请输入预约总额">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约成本：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="order_consensus_cost" value="{$htmlData.order_consensus_cost}"  placeholder="请输入预约共识成本">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约优惠：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="order_coupon_id" value="{$htmlData.order_coupon_id}" placeholder="请选择预约优惠">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约细则：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="order_sale_detail" value="{$htmlData.order_sale_detail}" placeholder="请输入细则">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">预约状态：</div>
+    <div class="you" style="padding-top: 5px;">
+        <label class="am-radio-inline">
+            <input type="radio"  value="1" name="order_status" <if condition="$htmlData['order_status'] eq 1"> checked="checked" </if>> 即将开始
+        </label>
+        <label class="am-radio-inline">
+            <input type="radio" value="2"  name="order_status" <if condition="$htmlData['order_status'] eq 2"> checked="checked" </if>> 预约中
+        </label>
+        <label class="am-radio-inline">
+            <input type="radio" value="3"  name="order_status" <if condition="$htmlData['order_status'] eq 3"> checked="checked" </if>> 预约结束
+        </label>
+    </div>
+</div>
+<!--预约结束模块-->

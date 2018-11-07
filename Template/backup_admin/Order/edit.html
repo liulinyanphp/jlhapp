@@ -1,0 +1,114 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 业务管理 </li>
+                <li>
+                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">充值订单列表
+                        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">充值订单审核</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('purchase_list')}">充值订单列表列表</a> > 审核充值订单
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">平台编码：</div>
+                        <div class="zuo" {$div}>{$data.plat_code}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">充值交易号：</div>
+                        <div class="zuo" {$div}>{$data.trade_no}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">平台用户id：</div>
+                        <div class="zuo" {$div}>{$data.uid}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">用户收币地址：</div>
+                        <div class="zuo" {$div}>{$data.user_addr}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">银行名称：</div>
+                        <div class="zuo" {$div}>{$data.bank_name}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">银行卡号：</div>
+                        <div class="zuo" {$div}>{$data.bank_card_no}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">持卡人姓名：</div>
+                        <div class="zuo" {$div}>{$data.bank_card_holder}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">到账时间：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" name="payment_time" id='datetimepicker1'>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">收款金额：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" name="amount" placeholder="请输入您收到的金额">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">充值参考号：</div>
+                        <div class="zuo" {$div}>{$data.bank_card_no}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">银行流水号：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" name="bank_trans_no" placeholder="请输入银行流水号">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">审核意见：</div>
+                        <div class="you">
+                            <select data-am-selected="{btnWidth: 100%, btnSize: 'sm'}" name="status">
+                                <foreach name="purchaseCoinStatus" item="obj" key="key">
+                                    <option value="{$key}">{$obj}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">操作描述：</div>
+                        <div class="you">
+                            <textarea rows="6" name="operator_desc" placeholder="请输入操作简要描述"></textarea>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <input type="hidden" name="tradeNo" value="{$data.trade_no}">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="提交" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script>
+                $(function() {
+                    $('#datetimepicker1').datetimepicker();
+                });
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('edit')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.res_info);
+                            if(msg.result == 0 && msg.result_rows !='')
+                            {
+                                window.location.href = msg.result_rows;
+                            }
+                        }
+                    });
+                }
+            </script>

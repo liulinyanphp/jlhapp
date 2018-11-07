@@ -1,0 +1,66 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    用户地址余额列表<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                用户地址余额列表
+            </ul>
+        </div>
+        <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+            <form method="post" action="{:U('list')}">
+                <dl>
+                    平台编码：<input type="text" class="am-input-sm" name="plat_code" placeholder="请输入您查找的平台编码">
+                </dl>
+                <dl>
+                    用户编号：<input type="text" class="am-input-sm" name="uid" placeholder="请输入您查找的用户编码">
+                </dl>
+                <dl>
+                    地址: <input type="text" class="am-input-sm" name="user_addr" placeholder="请输入您查找的用户钱包地址">
+                </dl>
+                <dl>
+                    <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                </dl>
+            </form>
+        </div>
+        <form class="am-form am-g" name="myform" id="myform" method="get">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <th>平台编号</th>
+                <th>币种编号</th>
+                <th>用户编号</th>
+                <th>钱包地址</th>
+                <th>余额总数</th>
+                <th>冻结总数</th>
+                <!--<th>最后操作人</th>-->
+                <!--<th>创建时间</th>-->
+                <th>最后更新时间</th>
+                </thead>
+                <tbody>
+                <volist name="balaceList" id="vo">
+                    <tr>
+                        <td>{$vo.plat_code}</td>
+                        <td>{$vo.currency_code}</td>
+                        <td>{$vo.uid}</td>
+                        <td><a href="{:U('logList',array('addr'=>$vo['user_addr']))}">{$vo.user_addr}</a></td>
+                        <td>{$vo.user_total_num}</td>
+                        <td>{$vo.freeze_num}</td>
+                        <!--<td>{$vo.last_modified_by}</td>-->
+                        <!--<td>{$vo.created_date}</td>-->
+                        <td>{$vo.last_modified_date}</td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>

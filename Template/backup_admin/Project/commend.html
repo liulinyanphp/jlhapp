@@ -1,0 +1,122 @@
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">温馨提示！！！</div>
+            <div class="am-modal-bd">
+                你确定要改变推荐项目的状态吗？
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</li>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                项目推荐管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">
+                推荐项目列表
+                </ul>
+                <dl class="am-icon-home" style="float: right;">
+                    当前位置： <a href="{:U('list')}"> 项目管理 </a> > 推荐项目列表</a>
+                </dl>
+                <dl>
+                    <a href="{:U('commendAdd')}" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" >
+                        添加推荐项目
+                    </a>
+                </dl>
+            </div>
+            <form class="am-form am-g" name="myform" id="myform" method="post">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <th width="220">项目名称</th>
+                    <th>项目logo</th>
+                    <th>项目显示顺序</th>
+                    <th>推荐人</th>
+                    <th>推荐时间</th>
+                    <th>操作</th>
+                </thead>
+                <tbody id="doc-modal-list">
+                <volist name="listData" id="vo">
+                <tr>
+                    <td><a href="{:U('show',array('randCode'=>$vo['rand_code']))}">{$vo.name}</a></td>
+                    <td><img src="{$vo.logo_img_url}" width="40" height="30" /></td>
+                    <td>{$vo.order_num}</td>
+                    <td>{$vo.created_by}</td>
+                    <td>{$vo.created_date}</td>
+                    <td>
+                        <a href="{:U('commendEdit',array('randCode'=>$vo['rand_code']))}">编辑</a>
+                        <if condition="$vo['is_deleted'] eq 1">
+                            <a data-code="{$vo.rand_code}" data-act="open" href="javascript:;" class="am-icon-action">恢复</a>
+                            <else />
+                            <a data-code="{$vo.rand_code}" data-act="close" href="javascript:;" class="am-icon-action">删除</a>
+                        </if>
+                    </td>
+                </tr>
+                </volist>
+                </tbody>
+            </table>
+                <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+            </form>
+            <script type="text/javascript">
+                $(function() {
+                    $('#doc-modal-list').find('.am-icon-action').add('#doc-confirm-toggle').
+                    on('click', function() {
+                        $('#my-confirm').modal({
+                            relatedTarget: this,
+                            onConfirm: function(options) {
+                                var $link = $(this.relatedTarget);
+                                var data_code = $link.data('code');
+                                changestatus(data_code);
+                            },
+                            // closeOnConfirm: false,
+                            onCancel: function() {
+                                alert('您未做状态修改确认,系统将不会做任何修改');
+                            }
+                        });
+                    });
+
+                    var $modal = $('#edit-modal');
+                    $('#doc-modal-list').find('.js-modal-open').on('click', function(e) {
+                        var $target = $(e.target);
+                        console.log($target.attr('data-id'));
+                        $modal.modal();
+                    });
+                });
+
+                function changestatus(data_code)
+                {
+                    var obja = $('a[data-code='+data_code+']');
+                    var tt  = obja.html();
+                    var txt = ( tt == '恢复' ? '删除':'恢复');
+                    var data_act = ( tt == '删除' ? 'close':'open');
+                    var tmpact = ( tt == '删除' ? 'open':'close');
+                    $.ajax({
+                        'url':"{:U('commendEdit')}",
+                        'type':'post',
+                        'data':{'randCode':data_code,'act':data_act},
+                        success:function(res)
+                        {
+                            if(res.result == 0)
+                            {
+                                $('a[data-code='+data_code+']').html(txt);
+                                obja.attr('data-act',tmpact);
+                                alert(res.message);
+                            }else{
+                                alert(res.message);
+                            }
+                        }
+                    });
+                }
+            </script>

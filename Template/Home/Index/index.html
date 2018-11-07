@@ -1,0 +1,292 @@
+
+	<style type="text/css">
+	.home{
+		background: url("{$pcpath}/dist/6e400251f2289c097257e1ed963030f2.jpg") fixed center center no-repeat;
+		background-size: cover;
+		width: 100%;
+	}
+	.home .content .company-name {
+	  position: absolute;
+	  top: 60px;
+	  left: 40px;
+	  max-width: 200px;
+	}
+	.home .showbox{
+	    position:absolute;
+	    top: 0px;
+	    left: 0px;
+	    right: 0px;
+	    bottom: 0px;
+	    margin: auto;
+	    width: 500px;
+	    height: 200px;
+	}
+	.showbox > span {
+		margin: 12px 6px;
+		font-size: 24px;
+		display: inline-block;
+		line-height: 0.6;
+		padding-bottom: 6px;
+		font-weight: bold;
+		padding: 0px 6px;
+		text-align: center;
+	}
+	.showbox > strong {
+		color: #fff;
+		font-size: 54px;
+		vertical-align: -4px;
+		margin-right: 4px;
+	}
+	.guide {
+		color: #fff;
+		position: absolute;
+		bottom: 48px;
+		padding-bottom: 0px;
+		left: 50%;
+		transform: translate(-50%, 0);
+		font-family: "FZYOUH_503L";
+		font-size: 14px;
+	}
+
+	.guide:after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: -20px;
+		width: 1px;
+		top: 36px;
+		background-color: #fff;
+	}
+	.project-list li{padding: 5px 0px;}
+	
+	/* 折叠菜单*/
+	.menu_zd{
+		width: 20px;
+		height: 20px;
+		float: right;
+		background: url({$pcpath}/css/img/hedtop_ico2.png) center center no-repeat;
+	}
+
+.menu_selec {
+    display: none;
+    width: 105px;
+    border: 1px solid #e1e1e1;
+    background: #fff;
+    position: absolute;
+    top: 65px;
+    right: 0px;
+    padding-bottom: 4px;
+    border-radius: 3px;
+}
+
+.menu_selec.active {
+    display: block;
+}
+
+.mt-nav-arr {
+    border-style: solid;
+    border-width: 8px;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    width: 0;
+    border-color: transparent transparent #fff;
+    _border-color: #ff4401 #ff4401 #fff;
+    right: 10%;
+    top: -17px;
+    margin-left: -8px;
+    box-shadow: 0 1px 0 #fff;
+    bottom: 2px;
+}
+
+.menu_selec li {
+    width: 105px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 auto;
+    color: #000;
+}
+
+.menu_selec li a {
+    color: #343434;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.menu_selec li a:hover {
+    color: #cba36c;
+}
+	</style>
+</head>
+<body>
+	<section class="panel home" data-section-name="home" style="position: relative;">
+		<div class="content">
+			<h1 class="company-name">
+				<span>创世资本</span>
+				<img class="logo" src="{$pcpath}/dist/70c2f899652e57ca906d4dce575e0b32.png" alt="创世资本 logo">
+			</h1>
+			<p class="language">
+				<a class="link" href="/">中文</a>
+				<a class="link" href="/en">EN</a>
+				<a class="link menu_zd" href="javascript:;"></a>
+				<div class="menu_selec">
+					<a class="mt-nav-arr"></a>
+					<ul>
+					    <li>
+					        <a href="javascript:;" class="go_about">关于创世资本</a>
+					    </li>
+					    <li>
+					        <a href="javascript:;" class="go_groups">团队介绍</a>
+					    </li>
+					    <li>
+					        <a  href="javascript:;" rel="nofollow" class="go_contactus">联系我们</a>
+					    </li>
+					</ul>
+            	</div>
+			</p>
+			<div class="showbox">
+				<span>距离创世区块成立</span><br>
+				<span>已经过去</span><br>
+				<strong class="year">1</strong>
+				<span>年</span>
+				<strong class="month">2</strong>
+				<span>个月</span>
+				<strong class="day">3</strong>
+				<span>天</span>
+			</div>
+			<div class="guide"><a href="#overview" class="scroll">滑动鼠标滚轮</a></div>
+		</div>
+	</section>
+	<section class="panel overview" data-section-name="overview">
+		<div class="wrap projects">
+			<h2><img class="logo" src="{$pcpath}/dist/b6f0ccc35d3c66eb689f5df5567e2cb5.png" alt="创世资本 logo"></h2>
+			<div class="content">
+				<ul class="project-list">
+					<li>
+						<span class="name">18区</span>
+						<a class="link" target="_blank" href="https://www.pgyer.com">区块链领域专业化的信息传递</a>
+					</li>
+					<li>
+						<span class="name">Trustnote</span>
+						<a class="link" target="_blank" href="javascript:void(0)">公有链技术平台</a>
+					</li>
+					<li>
+						<span class="name">ART</span>
+						<a class="link" target="_blank" href="javascript:void(0)">为艺术品提供数字证书的平台</a>
+					</li>
+					<li>
+						<span class="name">ULIVE</span>
+						<a class="link" target="_blank" href="{$pcpath}/file/YouLive_WhitepaperV1.0.4.pdf">去中心化实时内容分享平台
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+					<li>
+						<span class="name">CPS</span>
+						<a class="link" target="_blank" href="javascript:void(0)">利用区块链技术建立数字身份系统</a>
+					</li>
+					<li>
+						<span class="name">Pocker</span>
+						<a class="link" target="_blank" href="{$pcpath}/file/pokerio_en.pdf">全球区块链扑克游戏平台
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+					<li>
+						<span class="name">Charter</span>
+						<a class="link" target="_blank" href="http://chater.foundation">方圆（股书）</a>
+					</li>
+					<li>
+						<span class="name">HYDRO</span>
+						<a class="link" target="_blank" href="{$pcpath}/file/Hydro-Whitepaper-v0116-en.pdf">内建激励机制的网络底层协议
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+					<li>
+						<span class="name">BAIC</span>
+						<a class="link" target="_blank" href="javascript:void(0)">连接AI 和IOT的个人数据价值链</a>
+					</li>
+					<li>
+						<span class="name">DATA</span>
+						<a class="link" target="_blank" href="{$pcpath}/file/DATA_Draft_V1.52.pdf">
+							去中心化数据信用协议
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+					<li>
+						<span class="name">AAA</span>
+						<a class="link" target="_blank" href="javascript:void(0)">大数据</a>
+					</li>
+					<li>
+						<span class="name">penta</span>
+						<a class="link" target="_blank" href="javascript:void(0)">底层项目</a>
+					</li>
+					<li>
+						<span class="name">SOORTS</span>
+						<a class="link" target="_blank" href="https://www.allsportschain.com/paper/all_sports_blockchain_open_platform_white_paper.pdf?20180327">体育产业区块链开放平台
+							<img class="icon" src="{$pcpath}/dist/download.jpg"></a>
+					</li>
+					<li>
+						<span class="name">ESPORTS</span>
+						<a class="link" target="_blank" href="javascript:void(0)">电竞区块链</a>
+					</li>
+					<li>
+						<span class="name">PIXIE</span>
+						<a class="link" target="_blank" href="{$pcpath}/file/PixieCoinWhitePaper_EN.pdf">
+							设计师创意交易变现平台
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+					<li>
+						<span class="name">Tripio</span>
+						<a class="link" target="_blank" href="javascript:void(0)">去中心化旅行服务市场</a>
+					</li>
+					<li>
+						<span class="name">OceanChain</span>
+						<a class="link" target="_blank" href="./file/OceanChainEnglish.pdf">
+							海洋渔业区块链
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+					<li>
+						<span class="name">ShineChain</span>
+						<a class="link" target="_blank" href="{$pcpath}/file/shinechain_white_paper_en.pdf">
+							基于区块链的全球互助保障社区
+							<img class="icon" src="{$pcpath}/dist/download.jpg">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<section class="panel configuration" data-section-name="configuration" id="about">
+		<div class="wrap about">
+			<div class="content">
+				<img class="logo" src="{$pcpath}/dist/70c2f899652e57ca906d4dce575e0b32.png" alt="创世资本 logo">
+				<p class="intro">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+			</div>
+		</div>
+	</section>
+	<section class="panel options" data-section-name="options" style="height: 157px;" id="tems">
+		<div class="wrap group">
+			<div class="content">
+				<h2 class="title">团队介绍</h2>
+				<div class="group-image"></div>
+			</div>
+		</div>
+	</section>
+	<section class="panel methods" data-section-name="methods" style="height: 157px;" id="contactus">
+		<div class="wrap contact">
+			<h2 class="title">联系我们</h2>
+			<div class="content">
+				<img class="location" src="{$pcpath}/dist/362172a4e4f06bc254c0fcf81ea38c4c.png" alt="地址">
+				<div class="info">
+					<p class="contact-way">daisywho@newgenesis.com</p><br>
+					<p class="contact-way">135 4755 5574</p><br>
+					<p class="contact-way">北京市朝阳区望京街道方恒时代B座1301</p>
+				</div>
+			</div>
+		</div>
+	</section>

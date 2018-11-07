@@ -1,0 +1,49 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</li>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                项目管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">
+                项目列表
+                </ul>
+                <dl class="am-icon-home" style="float: right;">
+                    当前位置： 项目管理 > <a href="{:U('list')}">项目列表</a>
+                </dl>
+            </div>
+            <form class="am-form am-g" name="myform" id="myform" method="post">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <th>项目编号</th>
+                    <th>项目名称</th>
+                    <th>项目logo</th>
+                    <th>项目类型</th>
+                    <th>项目官网地址</th>
+                    <th>创建人</th>
+                    <th>添加时间</th>
+                </thead>
+                <tbody id="doc-modal-list">
+                <volist name="listData" id="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td><a href="U('logList')">{$vo.name}</a></td>
+                    <td><img src="{$vo.logo_img_url}" width="40" height="30" /></td>
+                    <td>{$proType[$vo['type']]}</td>
+                    <td>{$vo.website_url}</td>
+                    <td>{$vo.created_by}</td>
+                    <td>{$vo.created_date}</td>
+                </tr>
+                </volist>
+                </tbody>
+            </table>
+                <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+            </form>

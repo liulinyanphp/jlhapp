@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>创世资本 Genesis</title>
+<script type="text/javascript" src="{$pcpath}/js/jquery.min.js"></script>
+<literal>
+<style type="text/css">
+    html{-webkit-text-size-adjust:none;font-size: 62.5%;}
+    body{font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;font-size: 1rem;}
+    html, body{width:100%;overflow-x: hidden;}
+    *{margin: 0;padding:0;-webkit-tap-highlight-color:transparent;}
+    input{border:none;}
+    .content{width: 100%;margin: 0 auto;max-width: 720px;}
+    .wrap{width: 100%;min-width: 320px;position:relative;max-width: 720px;z-index: 98;background-size: cover}
+    .wrap a{display: block; text-indent: -999em; position: absolute;}
+    .wrap img,.h520 img{display: block;max-width: 100%;border: none;margin:0 auto;vertical-align: baseline;}
+    h1,h2{text-align: center;}
+    .imgdb{margin: 0 auto;}
+    .wap{ position:relative; width:100%;overflow: hidden;}
+    input[type=text]{font-size:12px;}
+    .box2 .yuyue{width:100%;height:80%;top:0;left:0;}
+    .box2 .kefu{width:35%;height:20%;bottom:0;right:0;}
+
+    .box3 .link{width:100%;height:100%;top:0;left:0;}
+
+    .box6 .yuyue{width:50%;height:20%;bottom:17%;left:0;}
+    .box6 .kefu{width:50%;height:20%;bottom:17%;right:0;}
+
+    .box7 .link{width:100%;height:100%;top:0;left:0;}
+
+    .box8 .link1{width:50%;height:45%;top:0;left:0;}
+    .box8 .link2{width:50%;height:45%;top:0;right:0;}
+    .box8 .yuyue1{width:50%;height:9%;top:47%;left:0;}
+    .box8 .yuyue2{width:50%;height:9%;top:47%;right:0;}
+    .box8 .kefu{width:50%;height:10%;bottom:2%;right:0;}
+
+    .box10 .kefu{width:50%;height:25%;bottom:2%;right:0;}
+
+    .box11 .link1{width:50%;height:100%;top:0;left:0;z-index:10;}
+    .box11 .link2{width:50%;height:100%;top:0;right:0;z-index:10;}
+    .box11 .yuyue1{width:22%;height:12%;top: 31%;left: 26%;z-index:11;}
+    .box11 .yuyue2{width:22%;height:12%;top: 27%;left: 54%;z-index:11;}
+
+    .box12 .kefu{width:35%;height:10%;top:18%;right:0;z-index:11;}
+    .box12 .link1{width:60%;height:58%;top:27%;left:0;z-index:10;}
+    .box12 .link2{width:40%;height:58%;top:27%;right:0;z-index:10;}
+    .box12 .yuyue1{width:50%;height:9%;bottom:0%;left:0;z-index:10;}
+    .box12 .yuyue2{width:50%;height:9%;bottom:4%;right:0;z-index:10;}
+
+    .box14 .kefu{width:35%;height:10%;top:27%;right:0;z-index:11;}
+    .box14 .link1{width:55%;height:49%;top:37%;left:0;z-index:10;}
+    .box14 .link2{width:45%;height:49%;top:37%;right:0;z-index:10;}
+    .box14 .yuyue1{width:55%;height:9%;bottom:5%;left:0;z-index:10;}
+    .box14 .yuyue2{width:45%;height:9%;bottom:5%;right:0;z-index:10;}
+
+    /*第一个预约*/
+    .yuyueWrap{position: absolute;top:0;left:0;width:100%;height:100%;}
+    .yuyueWrap input[type=text]{width: 28%;height: 30px; position:absolute;left: 49%;text-indent: 4px;background: none;}
+    .yuyueWrap .bes_name{top: 35.5%;}
+    .yuyueWrap .bes_phone{ top: 46.5%;}
+    .yuyueWrap .bes_time{ top: 57%;}
+    .yuyueWrap .bes_submit{ width: 36%;display: block;height: 34px;background: none;position: absolute;top: 70%;left: 31%;text-indent: -999rem;}
+
+    /*弹窗*/
+    .sing_mark{display:none;width:100%;height:100%;position: fixed;top:0;left:0;background: rgba(0,0,0,0.8);z-index: 100;}
+    .dialog{position:relative;margin:25vh auto;width:90%;max-width:500px;height: auto;}
+    .dialog .imgdb{width:100%;height: auto;}
+    .sing1{position: absolute;top:0;left:0;width:100%;height:100%;z-index:100;}
+    .sing1 input[type=text]{width: 45%;height: 30px;position:absolute;left: 37%;text-indent: 4px;border-radius: 5px;background: none;}
+    .sing1 .bes_name{ top: 42.5%;}
+    .sing1 .bes_phone{top: 52.5%;}
+    .sing1 .bes_time{top: 63%;}
+    .sing1 .bes_submit{ width: 36%;display: block;height: 34px;background: none;position: absolute;top: 75%;left: 31%;text-indent: -999rem;}
+    .sing-close{width:40px;height:40px;position: absolute;top:0;right:0;z-index:101;}
+
+    .sing2{position: absolute;top:0;left:0;width:100%;height:100%;z-index:100;}
+    .sing2 input[type=text]{width: 45%;height: 30px;position:absolute;left: 28%;text-indent: 4px;border-radius: 5px;background: none;}
+    .sing2 .bes_name{ top: 35%;}
+    .sing2 .bes_phone{top: 44.5%;}
+    .sing2 .bes_submit{ width: 36%;display: block;height: 34px;background: none;position: absolute;top: 56%;left: 31%;text-indent: -999rem;}
+
+    .xuanfu{position: fixed;left:0;bottom:0;width:100%;display: block;z-index:99;}
+    .xuanfu img{width:100%;display: block;}
+
+    @media screen and (min-width:320px)and (max-width:374px){
+        .sing1 input[type=text]{height:22px;}
+    }
+    @media screen and (min-width:375px)and (max-width:413px){
+        .sing1 input[type=text]{height:25px;}
+    }
+
+    .box1{background-color: rgba(0,0,0,.5);}
+    .box1 .link1{top:15px;height:24px;color:#fff;font-size: 16px; font-weight: bold;text-indent:0; text-decoration: none;}
+    .one{left:15px;}
+    .two{left:60px}
+    .menu_zd{
+        width: 20px;
+        height: 20px;
+        background: url(images/hedtop_ico2.png) center center no-repeat;
+        right: 20px;
+    }
+    .box1 .headlogo{
+        width:264px; height: 108px;
+        text-indent:0; text-decoration: none;
+        top: 330px;
+        left: 60px;
+    }
+    .close{width: 24px; height: 24px; top:15px; color:#fff;
+          right: 20px; font-size: 24px; text-align: right;position:
+          absolute;z-index: 99;
+          text-decoration: none;
+      }
+    .nav{width: 100%; height: 100%; position: relative;}
+    .nav ul li{list-style: none; color: #ccc; font-size: 24px; width: 100%; margin: 40px 0px; text-align: center;}
+    .nav ul li a{color: #ccc; text-decoration: none;}
+
+
+    .about > .content {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 30px;
+      padding: 0 12vw;
+      text-align: center;
+    }
+
+    /*.about > .content > .logo {
+      max-width: 40vw;
+      height: auto;
+      margin-bottom: 30px;
+      display: inline-block;
+    }*/
+    .aboutus{
+        width: 400px;
+        height: 300px;
+        position: absolute;
+        top: 50%;
+        margin-top:-150px;
+
+    }
+    .intro{
+        text-align: left;
+        color: #fff;
+        font-size: 14px;
+        line-height: 1.5;
+        width: 300px;
+        margin-left: 40px;
+        margin-top: 20px;
+    }
+    .aboutus > .logo{
+        width: 198px;
+        height: 72px;
+        margin-left: 100px;
+    }
+</style>
+</literal>
+</head>
+<body>
+<script type="text/javascript">
+    IsPC();
+    function IsPC(){
+        var userAgentInfo = navigator.userAgent;
+        var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+        var flag = true;
+        fo (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        if(flag==true){
+            window.location.href="http://www.kela.cn/Public/subject/201708/qixi/";
+        }
+    }
+</script>
+<div class="content h520">
+    <div class="wrap">
+        <div class="wap box1">
+            <img src="images/header_bg.jpg" class="imgdb"/>
+            <a class="link1 one" href="/">中文 | </a>
+            <a class="link1 two" href="/en">EN</a>
+            <a class="link1 menu_zd a-key-btn" href="javascript:;"></a>
+            <a href="javascript:;" class="headlogo">
+                <img src="images/header_log.png">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="sing_mark">
+    <a href="javascript:;" class="close">X</a>
+        <!--这里是导航-->
+        <div class="nav">
+            <ul>
+                <li><a href="javascript:;" class="btn_about">关于创世资本</a></li>
+                <li><a href="javascript:;" class="btn_team">团队介绍</a></li>
+                <li><a href="javascript:;" class="btn_contact">联系我们</a></li>
+            </ul>
+        </div>
+        <div class="aboutus" style="display: none;">
+            <!--这里是关于我们-->
+            <img class="logo" src="images/header_log.png" alt="创世资本 logo">
+            <p class="intro">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            </p>
+        </div>
+        <div class="teams">
+            <!--这里是团队介绍-->
+        </div>
+        <div class="contactus">
+            <!--这里是联系我们-->
+        </div>
+
+
+        <div class="bespoke"  style="display: none;">
+            <img src="images/tc.png" class="imgdb"/>
+            <a href="javascript:;" class="sing-close"></a>
+            <div class="sing1">
+                <input type="text" class="bes_name mall_name" name="mall_name" placeholder="您的姓名"/>
+                <input type="text"  class="bes_phone mall_phone" name="mall_phone" placeholder="您的手机号"/>
+                <input type="text"  class="bes_time mall_time" name="mall_time" placeholder="到店时间"/>
+                <input type="hidden" class="bes_remork mall_remark" name="mall_remark" value="7月七夕专题页-h5"/>
+                <input type="button" class="bes_submit" name="bes_submit" value="立即提交" onclick="saveBespoke('.sing1');"/>
+            </div>
+        </div>
+        <div class="kezi" style="display: none;">
+            <img src="images/tc1.png" class="imgdb"/>
+            <a href="javascript:;" class="sing-close"></a>
+            <div class="sing2">
+                <input type="text" class="bes_name" name="bes_name" placeholder="您的姓名"/>
+                <input type="text"  class="bes_phone" name="bes_phone" placeholder="您的手机号"/>
+                <input type="button" class="bes_submit" name="bes_submit" value="立即提交" onclick="checkKZ('.sing2');"/>
+            </div>
+        </div>
+</div>
+<link href="/Public/subject/home/js/mobiscroll/mobiscroll.custom-2.5.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="/Public/subject/home/js/mobiscroll/mobiscroll.custom-2.5.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Public/js/pc/home/sea.js"></script>
+<script type="text/javascript" src="/Public/js/common/base.js"></script>
+<script type="text/javascript" src="/Public/js/wap/common/bespoke.js"></script>
+<script>
+    $(function(){
+
+        $(".a-key-btn").click(function(){
+            $(".sing_mark").show();
+            $(".aboutus").show();
+            $(".kezi").hide();
+        })
+        $(".close").click(function(){
+            $(".sing_mark").hide();
+        });
+
+        $(".xuanfu").click(function(){
+            $(".sing_mark").show();
+            $(".kezi").show();
+            $(".bespoke").hide();
+        })
+
+        /*时间插件*/
+        var month = (new Date()).getMonth();
+        var date = (new Date()).getDate();
+        var optshop = {
+            preset: 'date',
+            theme: 'android',
+            display: 'modal',
+            mode: 'scroller',
+            lang: 'zh',
+            dateFormat: 'yyyy-mm-dd',
+            setText: '确定',
+            cancelText: '取消',
+            dateOrder: 'yyyymmdd',
+            dayText: '日',
+            monthText: '月',
+            yearText: '年',
+            showNow: false,
+            nowText: "今",
+            minDate: new Date(2017, month, date),
+            maxDate: new Date(2025, 3, 30)
+        };
+        $(".mall_time").mobiscroll(optshop);
+    });
+
+    function saveBespoke(obj, callback) {
+        var mall_name = $(obj).find('.mall_name').val();
+        var mall_phone = $(obj).find('.mall_phone').val();
+        var mall_time = $(obj).find('.mall_time').val();
+        var mall_remark = $(obj).find('.mall_remark').val();
+        var mall_shop=$(".menuct").attr('shop-id');
+        if (mall_name == '' || mall_name == '您的姓名') {
+            alert('请输入您的姓名！');
+            return false;
+        }else if(mall_name.length >8){alert("姓名不可超过8个字符，请重新填写！");return false; }
+        if (mall_phone == '' || mall_phone == '手机号码') {
+            alert('请填写您的手机号！');
+            return false;
+        } else if (mall_phone !== '') {
+            var p1 = /(1[3-9]\d{9}$)/;
+            var b = false;
+            if (p1.test(mall_phone) == b) {
+                $(this).focus();
+                alert('手机号码不正确');
+                return false;
+            }
+        }
+        if (mall_time == '' || mall_time == '选择到店时间') {
+            alert('预约时间不能为空！');
+            return false;
+        }
+
+        var besurl = '/pc.php?m=api&c=Bespoke&a=save_bespoke';
+        var data = {
+            bespoke_man: mall_name,
+            mobile: mall_phone,
+            department: mall_shop,
+            shop_time: mall_time,
+            bespoke_remark: mall_remark,
+            referer_url: encodeURIComponent(window.location.href),
+            from_ad: '000000260000',
+            client: 'wireless'
+        };
+        $.getJSON(besurl, data, function(rsps) {
+            if (rsps.result == 1) {
+                alert(rsps.msg);
+                $("input[type=text]").val('');
+
+            } else {
+                var msg = rsps.msg ? rsps.msg : '抱歉：(预约失败)';
+                alert(msg);
+            }
+            if(typeof(rsps) === 'function') {
+                callback(rsps)
+            }
+        });
+    }
+
+    /* 客资 */
+    function checkKZ(obj){
+        var name=$(obj).find(".bes_name").val();
+        var phone=$(obj).find(".bes_phone").val();
+        var this_city=$(".menuct").attr("data-shopName");
+        var client_type = 2;
+        if(name == ''){
+            alert("用户名不能为空！");
+            return false;
+        }else if(name.length >8){
+            alert("姓名不可超过8个字符，请重新填写！");
+            $(this).focus();
+            return false;
+        }
+        if(phone == ''){
+            alert("手机号码不能为空！");
+            return false;
+        }else if(phone !== ''){
+            var p1 = /(1[3-9]\d{9}$)/;
+            var b = false;
+            if (p1.test(phone) == b) {
+                alert("请输入正确的号码格式！");
+                $(this).focus();
+                return false;
+            }
+        }
+
+        var data={'buget':0,'type':0,'attr1':0,'attr2':0,'city':this_city,'rel_type':39,'name':name,'phone':phone,'isnew':1,"ctype":client_type};
+        var besurl = '/pc.php?m=api&c=subject&a=userResearch';
+        $.post(besurl, data, function(rsps){
+            if (rsps.result) {
+                alert("操作成功！");
+                $(".sing_mark").hide();
+            } else {
+                var msg = rsps.msg ? rsps.msg : '抱歉：(锁定优惠失败,请重试)';
+                alert(msg);
+            }
+        });
+    }
+</script>
+</body>
+</html>

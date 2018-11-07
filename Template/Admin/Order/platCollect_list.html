@@ -1,0 +1,67 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                平台扣币管理
+                </button>
+            </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">
+                当前位置： 平台扣币列表
+            </div>
+            <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+                <form method="get" action="{:U('platCollect_list')}">
+                    <dl>
+                        平台编码: <input type="text" class="am-input-sm" name="platName" value="{$param.platName}" placeholder="请输入平台编码">
+                    </dl>
+                    <dl>
+                        用户编号：<input type="text" class="am-input-sm" name="uid"  value="{$param.uid}" placeholder="请输入用户编号">
+                    </dl>
+                    <dl>
+                        用户地址：<input type="text" class="am-input-sm" name="userAddr" value="{$param.userAddr}" placeholder="请输入用户地址">
+                    </dl>
+                    <dl>
+                        <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                    </dl>
+                </form>
+            </div>
+            <form class="am-form am-g" name="myform" id="myform" method="post">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <th>平台编码</th>
+                    <th>用户编号</th>
+                    <td>订单编号</td>
+                    <th>用户地址</th>
+                    <th>回收地址</th>
+                    <th>回收数量</th>
+                    <th>币种编号</th>
+                    <th>状态</th>
+                    <th>创建人</th>
+                    <th>创建时间</th>
+                </thead>
+                <tbody>
+                <volist name="platCollectList" id="vo">
+                <tr>
+                    <td>{$vo.plat_code}</td>
+                    <td>{$vo.uid}</td>
+                    <td>{$vo.trade_no}</td>
+                    <td>{$vo.user_addr}</td>
+                    <td>{$vo.collectr_addr}</td>
+                    <td>{$vo.num}</td>
+                    <td>{$vo.currency_code}</td>
+                    <td>{$vo.status}</td>
+                    <td>{$vo.created_by}</td>
+                    <td>{$vo.created_date}</td>
+                </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+            </form>

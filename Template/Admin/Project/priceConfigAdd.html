@@ -1,0 +1,104 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 添加价格获取配置信息</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('list')}">项目管理</a> > 添加价格获取配置信息
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">选择项目：</div>
+                        <div class="you">
+                            <!--<select class="js-example-matcher-start" name="randCode" multiple="multiple" style="width: 50%" id="proRandCode">-->
+                            <select class="js-example-matcher-start js-states form-control" name="randCode" style="width: 50%">
+                                <foreach name="proList" key="key" item="proInfo">
+                                    <option value="{$key}">{$proInfo}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">价格来换：</div>
+                        <div class="you">
+                            <select data-am-selected="{btnWidth:100%, btnSize:'sm', btnStyle: 'default'}" name="pro_price_getsource">
+                                <option value="FEIXIAOJAO">非小号</option>
+                                <option value="AICOIN">aicoin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">价格别名：</div>
+                        <div class="you">
+                            <input type="text" name="pro_alias_name" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="确认" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('priceConfigAdd')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.result ==0 && msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+                function matchStart(params, data) {
+                    // If there are no search terms, return all of the data
+                    if ($.trim(params.term) === '') {
+                        return data;
+                    }
+
+                    // Skip if there is no 'children' property
+                    if (typeof data.children === 'undefined') {
+                        return null;
+                    }
+
+                    // `data.children` contains the actual options that we are matching against
+                    var filteredChildren = [];
+                    $.each(data.children, function (idx, child) {
+                        if (child.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
+                            filteredChildren.push(child);
+                        }
+                    });
+
+                    // If we matched any of the timezone group's children, then set the matched children on the group
+                    // and return the group object
+                    if (filteredChildren.length) {
+                        var modifiedData = $.extend({}, data, true);
+                        modifiedData.children = filteredChildren;
+
+                        // You can return modified objects from here
+                        // This includes matching the `children` how you want in nested data sets
+                        return modifiedData;
+                    }
+
+                    // Return `null` if the term should not be displayed
+                    return null;
+                }
+
+                $(".js-example-matcher-start").select2({
+                    matcher: matchStart
+                });
+            </script>

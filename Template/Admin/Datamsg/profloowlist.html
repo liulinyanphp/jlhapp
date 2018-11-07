@@ -1,0 +1,49 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</li>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    项目关注信息<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">
+                数据管理 > <a href="{:U('/admin/project/list')}">返回项目列表</a>
+                </ul>
+                <dl class="am-icon-home" style="float: right;">
+                    当前位置：  数据管理  > 项目关注信息
+                </dl>
+            </div>
+            <form class="am-form am-g" name="myform" id="myform" method="post">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <th width="240">项目编码</th>
+                    <th>用户编号</th>
+                    <th>所属APP</th>
+                    <th>关注状态</th>
+                    <th>是否有效</th>
+                    <th width="180">关注时间</th>
+                    <th width="180">更新时间</th>
+                </thead>
+                <tbody id="doc-modal-list">
+                <volist name="listData" id="vo">
+                <tr>
+                    <td>{$vo.project_rand_code}</td>
+                    <td>{$vo.open_id}</td>
+                    <td>{$vo.app}</td>
+                    <td><if condition="$vo['is_follow'] eq 1">已关注<else/>未关注</if></td>
+                    <td><if condition="$vo['is_deleted'] eq 1">无效<else/>有效</if></td>
+                    <td>{$vo.created_date}</td>
+                    <td>{$vo.last_modified_date}</td>
+                </tr>
+                </volist>
+                </tbody>
+            </table>
+                <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+            </form>

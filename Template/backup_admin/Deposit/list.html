@@ -1,0 +1,161 @@
+    <div class="am-popup " id="my-popups" style="height: 540px;margin-top: -270px;width:750px; margin-left: -375px;">
+        <div class="am-popup-hd">
+            <h4 class="am-popup-title">用户充币详情</h4>
+            <span data-am-modal-close class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <form class="am-form tjlanmu">
+                <div class="am-form-group am-cf">
+                    <div class="zuo">平台编码：</div>
+                    <div class="zuo" {$div} id="detail_plat_code">{$data.plat_code}</div>
+                    <div class="zuo">用户编号：</div>
+                    <div class="zuo" {$div} id="detail_uid">{$data.uid}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">币种编号：</div>
+                    <div class="zuo" {$div} id="detail_currency_code">{$data.currency_code}</div>
+                    <div class="zuo">基础状态：</div>
+                    <div class="zuo" {$div} id="detail_status">{$data.status}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">创建人：</div>
+                    <div class="zuo" {$div} id="detail_created_by">{$data.created_by}</div>
+                    <div class="zuo">更新人：</div>
+                    <div class="zuo" {$div} id="detail_last_modified_by">{$data.last_modified_by}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">充值数量：</div>
+                    <div class="zuo" {$div} id="detail_amount">{$data.amount}</div>
+                    <div class="zuo">确认数：</div>
+                    <div class="zuo" {$div} id="detail_confirmations">{$data.confirmations}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">发送地址：</div>
+                    <div class="zuo" {$div} id="detail_sending_addr">{$data.sending_addr}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">用户地址：</div>
+                    <div class="zuo" {$div} id="detail_user_addr">{$data.user_addr}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">交易hash：</div>
+                    <div class="zuo" {$div} id="detail_tx_hash">{$data.tx_hash}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">交易块hash：</div>
+                    <div class="zuo" {$div} id="detail_block_hash">{$data.block_hash}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">孤立块hash：</div>
+                    <div class="zuo" {$div} id="detail_isolated_block_hash">{$data.isolated_block_hash}</div>
+                </div>
+
+                <div class="am-form-group am-cf">
+                    <div class="zuo">创建时间：</div>
+                    <div class="you" id="detail_created_date" style="padding-top: 6px;">{$data.created_date}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">更新时间：</div>
+                    <div class="you" id="detail_last_modified_date" style="padding-top: 6px;">{$data.last_modified_date}</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    用户充币列表<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                用户充币列表
+            </ul>
+        </div>
+        <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+            <form method="get" action="{:U('list')}">
+                <dl>
+                    平台编号：<input type="text" class="am-input-sm" name="platName" value="{$param.platName}" placeholder="请输入您查找的平台编号">
+                </dl>
+                <dl>
+                    用户编号：<input type="text" class="am-input-sm" name="uid" value="{$param.uid}" placeholder="请输入您查找的用户编号">
+                </dl>
+                <dl>
+                    用户地址：<input type="text" class="am-input-sm" name="userAddr" value="{$param.userAddr}" placeholder="请输入您查找的用户地址">
+                </dl>
+                <dl>
+                    充币状态：
+                    <select name="status">
+                        <option value="ALL">请选择状态</option>
+                        <foreach name="DepositStatus" key="key" item="obj">
+                            <option value="{$key}" <if condition="$key eq $param['status']">selected="selected"</if>>{$obj}</option>
+                        </foreach>
+
+                    </select>
+                </dl>
+                <dl>
+                    <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                </dl>
+            </form>
+        </div>
+        <form class="am-form am-g">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <th>平台编号</th>
+                <th>用户编号</th>
+                <th>币种编号</th>
+                <th>发送地址</th>
+                <th>用户地址</th>
+                <th>充值数量</th>
+                <th>状态</th>
+                <th>创建人</th>
+                <th>创建时间</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                <volist name="depositList" id="vo">
+                    <tr>
+                        <td>{$vo.plat_code}</td>
+                        <td>{$vo.uid}</td>
+                        <td>{$vo.currency_code}</td>
+                        <td>{$vo.sending_addr}</td>
+                        <td>{$vo.user_addr}</td>
+                        <td>{$vo.amount}</td>
+                        <td>{$DepositStatus[$vo['status']]}</td>
+                        <td>{$vo.created_by}</td>
+                        <td>{$vo.created_date}</td>
+                        <td>
+                            <a href="javascript:;" id="showbox" data-am-modal="{target: '#my-popups'}" style="display: none;"></a>
+                            <a class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-file" onclick="showdetail({$vo['id']});"></a>
+                        </td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>
+        <script type="text/javascript">
+            function showdetail(id)
+            {
+                $.ajax({
+                    'url':"{:U('detail')}",
+                    'type':"POST",
+                    'data':{'id':id},
+                    success:function (msg) {
+                        //console.log(msg);
+                        for(var i in msg){
+                            $("#detail_"+i).html(msg[i]);
+                        }
+                        $("#showbox").click();
+                    }
+                })
+            }
+        </script>

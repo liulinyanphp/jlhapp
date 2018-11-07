@@ -1,0 +1,50 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    地址日子记录列表<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                <a href="{:U('list')}">返回进货单列表</a>
+            </ul>
+        </div>
+        <form class="am-form am-g" name="myform" id="myform" method="post">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <th>进货编号</th>
+                <th>币种编号</th>
+                <th>进货数量</th>
+                <th>剩余数量</th>
+                <th>进货价格</th>
+                <th>收货地址</th>
+                <th>进货类型</th>
+                <th>最后操作人</th>
+                <th>更新时间</th>
+                </thead>
+                <tbody>
+                <volist name="stockLogList" id="vo">
+                    <tr>
+                        <td>{$vo.purchase_id}</td>
+                        <td>{$vo.currency_code}</td>
+                        <td>{$vo.purchase_num}</td>
+                        <td>{$vo.remain_num}</td>
+                        <td>{$vo.curr_price}</td>
+                        <td>{$vo.receive_addr}</td>
+                        <td>{$PurchaseTypeSearch[$vo['purchase_type']]}</td>
+                        <td>{$vo.last_modified_by}</td>
+                        <td>{$vo.last_modified_date}</td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>

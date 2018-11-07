@@ -1,0 +1,57 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 增加评级级别</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('ratingList')}">评级级别列表</a> > 增加评级级别
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">评级级别名称：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="name" placeholder="请输入评级级别名称">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">评级级别显示顺序：</div>
+                        <div class="you">
+                            <select data-am-selected="{btnWidth:100%, btnSize:'sm', btnStyle: 'default'}" name="order_num">
+                                <foreach name="orderNums" item="orderNum">
+                                    <option value="{$orderNum}">显示在第{$orderNum}位</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="添加" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('ratingAdd')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+            </script>

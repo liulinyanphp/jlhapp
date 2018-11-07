@@ -1,0 +1,103 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 增加投资机构</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('list')}">投资机构管理</a> > 增加投资机构
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">机构logo：</div>
+                        <div class="you">
+                            <!--<button type="button" class="button button-small btnupimg" onClick="toupload(this)">Go↑</button>-->
+                            <button type="button" class="button am-icon-cloud-upload btnupimg" onClick="toupload(this)">选择要上传的文件</button>
+                            <img src="" class="adimgshow" width="40" height="30" onClick="reupload(this)" style="visibility:hidden;">
+                            <input type="hidden" name="logo_img_url" value="" class="adimgpath" />
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">机构名称：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="name" placeholder="请输入投资机构名称">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">机构官网：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="link_url" placeholder="请输入投资机构官方链接">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="添加" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+                <form method="post" id="upform" action="{:U('Admin/project/UploadImg')}" enctype="multipart/form-data" style="display:none;">
+                    <input type="file" id="imgupload" name="upimg" />
+                    <input type="hidden" name="upFile" value="Investmentins">
+                </form>
+            </div>
+            <script type="text/javascript">
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('investmentAdd')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+                //上传图片
+                function toupload(obj)
+                {
+                    //定义点击按钮的索引值
+                    $("#imgupload").trigger("click");
+                }
+
+                $(function() {
+                    //on('click', ‘a’, function)
+                    //$('#imgupload').on('click','change',function(){
+                    $('#imgupload').live('change', function () {
+                        //模拟表单提交
+                        var form = new FormData(document.getElementById("upform"));
+                        $.ajax({
+                            url: "{:U('Admin/project/uploadimg')}",
+                            type: "post",
+                            data: form,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                console.log(data);
+                                //如果图片成功则把图片的路径赋值给缩略图显示的地方
+                                //定义一个变量表示是第几个按钮上传
+                                var path = data.imgpath;
+                                $(".adimgshow:eq(0)").attr('src',data.imgpath);
+                                $(".adimgpath:eq(0)").val(path);
+                                $(".adimgshow:eq(0)").css('visibility','visible');
+                                $(".adimgshow:eq(0)").css('display','');
+                                $('#imgupload').val('');
+                            },
+                            error: function (e) {
+                                //alert("错误！！");
+                                //window.clearInterval(timer);
+                            }
+                        });
+                    });
+                });
+            </script>

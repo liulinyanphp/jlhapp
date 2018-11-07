@@ -1,0 +1,270 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: 'Helvetica Neue',Arial,'Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
+  -webkit-font-smoothing: antialiased!important;
+}
+.wrap {
+  min-height: 100vh;
+  background-color: rgb(33,33,35);
+}
+.index{
+    background-color: #fff;
+}
+.time {
+  display: none;
+}
+.index > .background {
+  background-image: url("../images/index_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: calc(100vh);
+}
+.background > .content {
+  height: calc(100vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.5);
+  position: relative;
+}
+
+.company-name {
+  text-align: center;
+  color: #fff;
+}
+
+.company-name > .logo {
+  max-width: 60vw;
+  width: 100%;
+}
+
+.company-name > span {
+  display: none;
+}
+
+.language {
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.menu {
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background: url(../images/hedtop_ico2.png) center center no-repeat;
+  cursor:pointer;
+}
+
+.language > .link {
+  color: #fff;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
+
+.language > .link:first-child {
+  margin-right: 5px;
+  position: relative;
+}
+.language > .link:first-child:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background-color: #fff;
+}
+.guide {
+  color: #fff;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-family: "FZYOUH_503L";
+  font-size: 12px;
+  padding-bottom: 0px;
+}
+
+a:link,
+a:visited {
+	color:#FFF;
+	text-decoration:none;
+}
+a:hover,a:focus,a:active {text-decoration:underline;}
+
+    
+
+/*第一屏幕结束*/
+
+
+.projects {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.projects h2 {
+  text-align: center;
+  margin: 0 0 1em;
+  padding-top: 1em;
+}
+.projects .logo {
+  max-width: 40%;
+}
+.project-list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  list-style: none;
+  color: #e2e2e2;
+  font-size: 18px;
+  overflow: scroll;
+}
+.project-list > li {
+  padding: 3px 0;
+  cursor: pointer;
+}
+.project-list > li.active > .link {
+  visibility: visible;
+}
+.project-list > li.active > .name{
+  color: #000;
+  border: none;
+  border-right: 3px solid #e2e2e2;
+}
+.project-list .name {
+  border-bottom: 1px solid #e2e2e2;
+  padding-right: 6px;
+}
+.project-list .link {
+  color: #000;
+  font-size: 12px;
+  margin-left: 5px;
+  text-decoration: none;
+  visibility: hidden;
+  vertical-align: 1px;
+}
+.project-list .icon {
+  display: inline-block;
+  width: 28px;
+  height: auto;
+  vertical-align: -5px;
+  margin-left: 5px;
+}
+/**第二屏幕结束**/
+.about > .content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12vw;
+  text-align: center;
+}
+
+.about > .content > .logo {
+  max-width: 40vw;
+  height: auto;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+.about > .content > .intro {
+  text-align: left;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+/*第三屏结束**/
+.group {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.group > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12vw;
+  text-align: center;
+}
+
+.group .title {
+  padding-top: 0;
+  color: #333;
+}
+.group-image {
+  width: 80vw;
+  height: 200px;
+  max-width: 80%;
+  background-color: #eee;
+}
+/**第四屏结束**/
+.contact {
+  background-image: url("../images/contact_map.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y:center;
+  padding: 20px 12vw;
+}
+.contact > .content > .location {
+  display: none;
+}
+.contact  .info {
+  border-left: 1px solid #fff;
+  margin-left: 16px;
+  margin-top:10px;
+  text-align:left;
+}
+
+.contact-way {
+  /*background-color: rgb(232, 232, 232);*/
+  color:#fff;
+  display: inline-block;
+  margin: 7px 0;
+  font-size: 20px;
+  line-height: 0.7;
+  font-style:italic;
+  padding: 0 5px 8px 5px;
+  line-height:24px;
+}
+.contact-way:first-child {
+  margin-top: 0;
+}
+
+.contact-way:last-child {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+/*第五屏结束**/
+
+
+ /*弹窗*/
+.sing_mark{display:none;width:100%;height:100%;position: fixed;top:0;left:0;background: rgba(0,0,0,0.8);z-index: 100;}
+.sing-close{width: 24px; height: 24px; top:15px; color:#fff;right: 20px; font-size: 24px; text-align: right;position:absolute;z-index: 99;text-decoration: none; cursor:pointer;}
+
+#navinfo{display:none;}
+.nav{
+	height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.nav ul li{list-style: none; color:#CCCCCC; font-size: 16px; width: 100%; margin: 40px 0px; text-align: center;}
+.nav a{color: #ccc; text-decoration: none;}
+.nav a:hover{ text-decoration:underline;}

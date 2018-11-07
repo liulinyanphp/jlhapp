@@ -1,0 +1,82 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
+                <li>
+                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">汇率管理
+                        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 汇率管理</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('list')}">汇率管理</a> > 编辑平台汇率
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">平台code：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  readonly="readonly" name="plat_code"value="{$datainfo.plat_code}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">币种编号：</div>
+                        <div class="you">
+                        <input type="text" class="am-input-sm"  name="currency_code" readonly="readonly" value="{$datainfo.currency_code}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">充值价格：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="deposit_price" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\u4e00-\u9fa5]/g,''))" onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')" value="{$datainfo.deposit_price}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">提现价格：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" name="withdraw_price"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\u4e00-\u9fa5]/g,''))" onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')" value="{$datainfo.withdraw_price}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">是否开启：</div>
+                        <div class="you">
+                            <if condition="$datainfo['is_used'] eq 1">
+                                <input type="radio" name="is_used" value="1" checked="checked" />开启
+                                <input type="radio" name="is_used" value="0" />关闭
+                            <else/>
+                                <input type="radio" name="is_used" value="1"  />开启
+                                <input type="radio" name="is_used" value="0" checked="checked" />关闭
+                            </if>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="hidden" name="id" value="{$datainfo.id}">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="提交" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('edit')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+            </script>

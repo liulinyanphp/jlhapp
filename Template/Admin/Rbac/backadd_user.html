@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <script src="{$base_path}/js/jquery.min.js"></script>
+    <style>
+        .add-role{
+            display:inline-block;
+            width:100px;
+            height:26px;
+            line-height: 26px;
+            text-align: center;
+            border: 1px solid  #ccc;
+            border-radius: 4px;
+            margin-left: 20px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body data-type="login" class="theme-black">
+   <form action="{:U('add_user_handle','','')}" method="post">
+        <table class="table">
+            <tr>
+                <th colspan="2">添加用户</th>
+            </tr>
+            <tr>
+                <td align="right" width="40%">用户账号</td>
+                <td>
+                    <input type="text" name="username">
+                </td>
+            </tr>
+            <tr>
+                <td align="right">密码：</td>
+                <td>
+                    <input type="password" name="password">
+                </td>
+            </tr>
+            <tr>
+                <td align="right">所属角色：</td>
+                <td>
+                    <select name="role_id[]" id="">
+                        <option value="">请选择角色</option>
+                        <foreach name="role" item="v">
+                            <option value="{$v.id}">{$v.name}({$v.remark})</option>
+                        </foreach>
+                    </select>
+                    <a class="add-role" href="javascript:;">添加一个角色</a>
+                </td>
+            </tr>
+            <tr id="last">
+                <td colspan="2" align="center">
+                    <input type="submit" value="保存">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+    $(function(){
+        $(".add-role").click(function(){
+            var obj = $(this).parents("tr").clone();
+            //$(this).find(".add-role").remove();
+            $("#last").before(obj);
+        });
+    });
+</script>
+</html>

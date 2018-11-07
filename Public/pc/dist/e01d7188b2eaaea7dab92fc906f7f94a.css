@@ -1,0 +1,145 @@
+.wrap {
+  padding: 0px 0;
+}
+
+.wrap .title {
+  font-size: 36px;
+  margin-bottom: 1em;
+  letter-spacing: 4px;
+}
+
+.index.wrap {
+  padding: 0px;
+  height: 100%;
+}
+
+.index > .background {
+  background-image: url("6e400251f2289c097257e1ed963030f2.jpg");
+  height: 100%;
+}
+
+.company-name {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  max-width: 200px;
+}
+
+.background > .content {
+  background-color: transparent;
+  height: calc(100vh - 16px);
+}
+
+.time {
+  display: block;
+  color: #000;
+}
+
+.time > span {
+  background-color: #fff;
+  margin: 12px 0;
+  font-size: 24px;
+  display: inline-block;
+  padding-right: 24px;
+  line-height: 0.6;
+  padding-bottom: 6px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.time > span:first-child,
+.time > span:nth-child(2){
+  padding-right: 50px;
+}
+
+.time > strong {
+  color: #fff;
+  font-size: 54px;
+  vertical-align: -4px;
+  margin-right: 4px;
+}
+
+.language {
+  right: 20px;
+  left: auto;
+}
+
+.projects .content{
+  display: flex;
+  justify-content: center;
+}
+
+.projects {
+  position: relative;
+}
+
+.projects .logo {
+  width: 200px;
+  position: absolute;
+  left: 40px;
+  top: 60px;
+}
+
+.project-list {
+  font-size: 20px;
+}
+
+.project-list .link {
+  font-size: 14px;
+}
+
+.about > .content {
+  flex-direction: row;
+  margin: 0 auto;
+  max-width: 1920px;
+}
+
+.about > .content > .logo {
+  margin-bottom: 0;
+  max-width: 300px;
+}
+
+.about > .content > .intro {
+  margin-left: 50px;
+  padding-left: 50px;
+  border-left: 1px solid #fff;
+  line-height: 2;
+}
+
+.group-image {
+  height: 500px;
+}
+
+.contact {
+  background-image: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact > .content {
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.contact > .content > .location {
+  display: inherit;
+  width: 440px;
+  height: 404px;
+}
+
+.contact > .content > .info {
+  margin-left: 30px;
+  padding-left: 30px;
+  border-left: 1px solid #e2e2e2;
+  height: 88px;
+  margin-top: 62px;
+}
+
+.contact-way {
+  font-size: 16px;
+}

@@ -1,0 +1,73 @@
+<script type="text/javascript" src="{$pcpath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="{$pcpath}/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="{$pcpath}/js/jquery.scrollify.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$(".panel").css({"height":$(window).height()});
+	var timer;
+	$(window).resize(function() {
+		clearTimeout(timer);
+		timer = setTimeout(function() {
+
+			$(".panel").css({"height":$(window).height()});
+		},40);
+	});
+
+	$.scrollify({
+		section:".panel"
+	});
+	$(".scroll").click(function(e) {
+		e.preventDefault();
+		$.scrollify("move",$(this).attr("href"));
+	});
+
+	$(".project-list li").mouseover(function(){
+		$(this).children('.link').css("visibility","visible");
+	  //$(this).css("visibility","visible");
+	});
+	$(".project-list li").mouseleave(function(){
+	   $(this).children('.link').css("visibility","hidden");
+	});
+
+
+
+	var $menu_selec=$(".menu_selec");
+	$(document).click(function(e) {
+	    if(!(e.target.className == "link menu_zd" || e.target == $menu_selec[0] || $.contains($menu_selec[0], e.target))){
+	        $menu_selec.hide();
+	    }
+	});
+
+	$(".menu_zd").click(function(){
+        $(".menu_selec").toggle()
+    })
+
+    $('.menu_selec').mouseleave(function(){
+    	$menu_selec.hide();
+    });
+
+    $(".ascroll").click(function(event){
+		event.preventDefault();
+		$('html,body').animate({scrollTop:jq(this.hash).offset().top},1000);
+	});
+
+
+	$(".go_about").live("click",function() {
+		var top = $("#about").offset().top;
+		$('body,html').animate({scrollTop: top}, 800);
+	});
+	$(".go_groups").live("click",function() {
+		var top = $("#tems").offset().top;
+		$('body,html').animate({scrollTop: top}, 800);
+	});
+	$(".go_contactus").live("click",function() {
+		var top = $("#contactus").offset().top;
+		$('body,html').animate({scrollTop: top}, 800);
+	});
+
+});
+
+/*导航登录注册点击事件*/
+</script>
+</body>
+</html>

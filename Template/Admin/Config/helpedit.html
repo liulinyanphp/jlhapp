@@ -1,0 +1,64 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 编辑新手帮助文章</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置：
+                    配置管理 >  <a href="{:U('analysisList')}">新手帮助列表</a> > 编辑新手帮助文章
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">编码：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="randCode" value="{$datainfo.rand_code}" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">标题：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="title" value="{$datainfo.title}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">内容：</div>
+                        <div class="you">
+                            <script id="editor"  type="text/plain" name="content">
+                                {$datainfo.content|htmlspecialchars_decode}
+                            </script>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="提交" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                var ue = UE.getEditor('editor');
+
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('helpEdit')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            //console.log(msg);
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+            </script>

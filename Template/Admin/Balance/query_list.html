@@ -1,0 +1,70 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    地址管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                地址管理
+            </ul>
+            <dl class="am-icon-home" style="float: right;">
+                当前位置： 地址管理 > <a href="{:U('list')}">地址列表</a>
+            </dl>
+            <dl>
+                <a href="{:U('add_address')}" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" data-am-modal="{target: '#my-popup'}">批量添加地址</a>
+            </dl>
+        </div>
+        <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+            <form method="post" action="{:U('list')}">
+                <dl>
+                    地址: <input type="text" class="am-input-sm" name="address" placeholder="请输入您查找的地址">
+                </dl>
+                <dl>
+                    平台编码：<input type="text" class="am-input-sm" name="currency_code" placeholder="请输入您查找的平台编码">
+                </dl>
+                <dl>
+                    <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                </dl>
+            </form>
+        </div>
+        <form class="am-form am-g" name="myform" id="myform" method="post">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <th>ID</th>
+                <th>平台编码</th>
+                <th>币种编号</th>
+                <th>钱包地址</th>
+                <th>使用者id</th>
+                <th>是否已分配</th>
+                <th>生成时间</th>
+                <th>最后更新时间</th>
+                </thead>
+                <tbody>
+                <volist name="balaceList" id="vo">
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.plat_code}</td>
+                        <td>{$vo.currency_code}</td>
+                        <td>{$vo.address}</td>
+                        <td>{$vo.user_id}</td>
+                        <td>{$vo.freeze_num}</td>
+
+                        <td><eq name="vo.is_used" value="1">已分配<else/>未分配</eq></td>
+                        <!-- <td>{$vo.last_modified_date|date="Y-m-d H:i:s",###}</td> -->
+                        <td>{$vo.created_date}</td>
+                        <td>{$vo.last_modified_date}</td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>

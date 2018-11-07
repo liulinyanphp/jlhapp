@@ -1,0 +1,71 @@
+<!--众筹追加模块-->
+<div class="am-form-group am-cf">
+    <div class="zuo">众筹开始时间：</div>
+    <div class="you  am-form-icon">
+        <i class="am-icon-calendar"></i>
+        <input type="text" class="am-form-field" name="crowd_start_time" value="{$htmlData.crowd_start_time}" id='datetimepicker1' placeholder="请输入众筹开始时间">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">众筹结束时间：</div>
+    <div class="you am-form-icon">
+        <i class="am-icon-calendar"></i>
+        <input type="text" class="am-form-field" name="crowd_end_time" value="{$htmlData.crowd_end_time}" id='datetimepicker2' placeholder="请输入众筹结束时间">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">众筹单位：</div>
+    <div class="you">
+        <select data-am-selected="{btnSize: 'sm'}" name="crowd_fi_unit">
+            <foreach name="FiUnit" key="key" item="unitName">
+                <option value="{$key}">{$unitName}
+                </option>
+            </foreach>
+        </select>
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">投资比例：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="crowd_percentage" value="{$htmlData.crowd_percentage}" placeholder="请输入投资比例的值，如一个ETH 兑换为500，那这里就输入500">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">融资规模：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="crowd_fi_amount" value="{$htmlData.crowd_fi_amount}" placeholder="请输入融资规模/众筹总额">
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">共识成本：</div>
+    <div class="you">
+        <input type="text" class="am-input-sm"  name="crowd_consensus_cost" value="{$htmlData.crowd_consensus_cost}" placeholder="请输入众筹共识成本单位是人名币">
+    </div>
+</div>
+<!--<div class="am-form-group am-cf">-->
+    <!--<div class="zuo">众筹优惠：</div>-->
+    <!--<div class="you">-->
+        <!--<input type="text" class="am-input-sm"  name="crowd_coupon_id" value="{$htmlData.crowd_coupon_id}" placeholder="请选择众筹优惠">-->
+    <!--</div>-->
+<!--</div>-->
+<div class="am-form-group am-cf">
+    <div class="zuo">众筹细则：</div>
+    <div class="you">
+        <textarea id="doc-vld-ta-9" name="crowd_sale_detail" minlength="10" maxlength="100">{$htmlData.crowd_sale_detail}</textarea>
+    </div>
+</div>
+<div class="am-form-group am-cf">
+    <div class="zuo">众筹状态：</div>
+    <div class="you" style="padding-top: 5px;">
+        <label class="am-radio-inline">
+            <input type="radio"  value="READY" name="crowd_status" <if condition="$htmlData['crowd_status'] eq 'READY' "> checked="checked" </if>> 即将开始
+        </label>
+        <label class="am-radio-inline">
+            <input type="radio" value="GOING"  name="crowd_status" <if condition="$htmlData['crowd_status'] eq 'GOING' "> checked="checked" </if>> 众筹中
+        </label>
+        <label class="am-radio-inline">
+            <input type="radio" value="END"  name="crowd_status" <if condition="$htmlData['crowd_status'] eq 'END' "> checked="checked" </if>> 众筹结束
+        </label>
+    </div>
+</div>
+<!--众筹结束模块-->

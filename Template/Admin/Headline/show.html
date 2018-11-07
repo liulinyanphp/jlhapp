@@ -1,0 +1,94 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on"> 查看头条资讯</ul>
+            <dl class="am-icon-home" style="float: right;"> 当前位置：
+                <a href="{:U('list')}">头条信息管理</a> > 查看头条信息
+            </dl>
+        </div>
+        <div class="fbneirong">
+            <form class="am-form" id="myform">
+                <div class="am-form-group am-cf">
+                    <div class="zuo">资讯类型：</div>
+                    <div class="you">
+                        <input type="text"  class="am-input-sm" value="{$headlineTypes[$datainfo['type']]}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">资讯编码：</div>
+                    <div class="you">
+                        <input type="text" class="am-input-sm"  value="{$datainfo.rand_code}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">标题：</div>
+                    <div class="you">
+                        <input type="text" class="am-input-sm"  value="{$datainfo.title}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">缩略图：</div>
+                    <div class="you">
+                        <img src="{$datainfo.img_url}" width="40" height="30" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">新闻简介：</div>
+                    <div class="you">
+                        <input type="text" class="am-input-sm"  value="{$datainfo.summary}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">发布时间：</div>
+                    <div class="you">
+                        <input type="text" class="am-form-field" value="{$datainfo.published_time}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">新闻内容：</div>
+                    <div class="you">
+                        <script id="editor"  type="text/plain" name="content" tyle="width:100%;height:500px;">
+                                {$datainfo.content|htmlspecialchars_decode}
+                        </script>
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">新闻作者：</div>
+                    <div class="you">
+                        <input type="text" class="am-input-sm" value="{$datainfo.author}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">信息来源：</div>
+                    <div class="you">
+                        <input type="text" class="am-input-sm" value="{$datainfo.resource}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">来源链接：</div>
+                    <div class="you">
+                        <input type="text" class="am-input-sm"  value="{$datainfo.resource_url}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">发布状态：</div>
+                    <div class="you" style="padding-top: 5px;">
+                        <if condition="$datainfo.is_published eq 1">
+                           已发布
+                            <else/>
+                           未发布
+                        </if>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            var ue = UE.getEditor('editor');
+        </script>

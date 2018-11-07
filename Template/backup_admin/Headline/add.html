@@ -1,0 +1,149 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 添加头条资讯</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('list')}">头条信息管理</a> > 增加头条信息
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">资讯类型：</div>
+                        <div class="you">
+                            <select data-am-selected="{btnWidth:100%, btnSize:'sm', btnStyle: 'default'}" name="type">
+                                <foreach name="headlineTypes" key="key" item="types">
+                                    <option value="{$key}">{$types}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">标题：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="title" placeholder="请输入新闻标题">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">缩略图：</div>
+                        <div class="you">
+                            <button type="button" class="button button-small btnupimg" onClick="toupload(this)">Go↑</button>
+                            <img src="" class="adimgshow" width="40" height="30" onClick="reupload(this)" style="visibility:hidden;">
+                            <input type="hidden" name="img_url" value="" class="adimgpath" />
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">新闻简介：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="summary" placeholder="请输入新闻简介">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">发布时间：</div>
+                        <div class="you">
+                            <input type="text" class="am-form-field"  name="published_time" id='datetimepicker1' placeholder="请输入头条信息的时间">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">新闻内容：</div>
+                        <div class="you">
+                            <script id="editor"  type="text/plain" name="content" tyle="width:100%;height:500px;"></script>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">新闻作者：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="author" placeholder="请输入新闻作者">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">信息来源：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="resource" placeholder="请输入新闻来源">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">来源链接：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm"  name="resource_url" placeholder="请输入来源链接">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">发布状态：</div>
+                        <div class="you" style="text-align: left; padding-top: 5px;">
+                            <input type="radio" name="is_published" value="0" checked="checked" />&nbsp;稍后发布
+                            <input type="radio" name="is_published" value="1" />&nbsp;立即发布
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="添加" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+                <form method="post" id="upform" action="{:U('Admin/headline/UploadImg')}" enctype="multipart/form-data" style="display:none;">
+                    <input type="file" id="imgupload" name="upimg" />
+                </form>
+            </div>
+            <script type="text/javascript">
+                var ue = UE.getEditor('editor');
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('add')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+                //上传图片
+                function toupload(obj)
+                {
+                    //定义点击按钮的索引值
+                    $("#imgupload").trigger("click");
+                }
+
+                $(function() {
+                    //on('click', ‘a’, function)
+                    //$('#imgupload').on('click','change',function(){
+                    $('#imgupload').live('change', function () {
+                        //模拟表单提交
+                        var form = new FormData(document.getElementById("upform"));
+                        $.ajax({
+                            url: "{:U('Admin/headline/uploadimg')}",
+                            type: "post",
+                            data: form,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                console.log(data);
+                                //如果图片成功则把图片的路径赋值给缩略图显示的地方
+                                //定义一个变量表示是第几个按钮上传
+                                var path = data.imgpath;
+                                $(".adimgshow:eq(0)").attr('src',data.imgpath);
+                                $(".adimgpath:eq(0)").val(path);
+                                $(".adimgshow:eq(0)").css('visibility','visible');
+                                $('#imgupload').val('');
+                            },
+                            error: function (e) {
+                                //alert("错误！！");
+                                //window.clearInterval(timer);
+                            }
+                        });
+                    });
+                    $('#datetimepicker1').datetimepicker();
+                });
+            </script>

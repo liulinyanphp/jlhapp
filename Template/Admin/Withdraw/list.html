@@ -1,0 +1,221 @@
+    <div class="am-popup " id="my-popups" style="height: 540px;margin-top: -270px;">
+        <div class="am-popup-hd">
+            <h4 class="am-popup-title">提币详情</h4>
+            <span data-am-modal-close class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <form class="am-form tjlanmu">
+                <div class="am-form-group am-cf">
+                    <div class="zuo">用户编号：</div>
+                    <div class="zuo" {$div} id="detail_uid">{$data.uid}</div>
+                    <div class="zuo">交易号：</div>
+                    <div class="zuo" {$div} id="detail_trade_no">{$data.trade_no}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">平台编码：</div>
+                    <div class="zuo" {$div} id="detail_plat_code">{$data.plat_code}</div>
+                    <div class="zuo">基础状态：</div>
+                    <div class="zuo" {$div} id="detail_status">{$data.status}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">申请数量：</div>
+                    <div class="zuo" {$div} id="detail_apply_num">{$data.apply_num}</div>
+                    <div class="zuo">手续费：</div>
+                    <div class="zuo" {$div} id="detail_fee_num">{$data.fee_num}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">到账数量：</div>
+                    <div class="zuo" {$div} id="detail_real_num">{$data.real_num}</div>
+                    <div class="zuo">币种编号：</div>
+                    <div class="zuo" {$div} id="detail_currency_code">{$data.currency_code}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">创建人：</div>
+                    <div class="zuo" {$div} id="detail_created_by">{$data.created_by}</div>
+                    <div class="zuo">批次号：</div>
+                    <div class="zuo" {$div} id="detail_batch_no">{$data.batch_no}</div>
+                </div>
+
+                <div class="am-form-group am-cf">
+                    <div class="zuo">更新人：</div>
+                    <div class="zuo" {$div} id="detail_last_modified_by">{$data.last_modified_by}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">转出地址：</div>
+                    <div class="zuo" {$div} id="detail_user_addr">{$data.user_addr}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">提币地址：</div>
+                    <div class="zuo" {$div} id="detail_receive_addr">{$data.receive_addr}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">申请时间：</div>
+                    <div class="you" {$div} id="detail_apply_time">{$data.apply_time}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">创建时间：</div>
+                    <div class="you" id="detail_created_date">{$data.created_date}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">更新时间：</div>
+                    <div class="you" id="detail_last_modified_date">{$data.last_modified_date}</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    用户提现列表<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                用户提币列表
+            </ul>
+        </div>
+        <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+            <form method="post" action="{:U('list')}">
+                <!--<dl>-->
+                    <!--平台编号：<input type="text" class="am-input-sm" width="100" name="platName" value="{$param.platName}" placeholder="请输入您查找的平台编号">-->
+                <!--</dl>-->
+                <dl>
+                    用户编号：<input type="text" class="am-input-sm" name="uid" value="" placeholder="请输入您查找的用户编号">
+                </dl>
+                <dl>
+                    用户地址：<input type="text" class="am-input-sm" name="userAddr" placeholder="请输入您查找的用户地址">
+                </dl>
+                <dl>
+                    提币状态：
+                    <select name="status">
+                        <option value="ALL">请选择状态</option>
+                        <foreach name="DrawStatusSearch" item="obj" key="key">
+                            <option value="{$key}" <if condition="$key eq $param['status']">selected="selected"</if>>{$obj}</option>
+                        </foreach>
+                    </select>
+                </dl>
+                <dl>
+                    <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                </dl>
+            </form>
+        </div>
+        <form class="am-form am-g">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <!--<th>平台编号</th>-->
+                <th>用户编号</th>
+                <th>交易号</th>
+                <th>提币状态</th>
+                <th>转出地址</th>
+                <!--<th>提币地址</th>-->
+                <th>申请数量</th>
+                <th>手续费</th>
+                <th>到账数量</th>
+                <th>币种编号</th>
+                <!--<th>创建人</th>-->
+                <th>批次号</th>
+                <th>申请时间</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                <volist name="presentList" id="vo">
+                    <tr>
+                        <!--<td>{$vo.plat_code}</td>-->
+                        <td>{$vo.uid}</td>
+                        <td><a href="javascript:;" onclick="showdetail({$vo['id']});">{$vo.trade_no}</a></td>
+                        <td>已{$DrawStatusSearch[$vo['status']]}</td>
+                        <td>{$vo.user_addr}</td>
+                        <!--<td>{$vo.receive_addr}</td>-->
+                        <td>{$vo.apply_num}</td>
+                        <td>{$vo.fee_num}</td>
+                        <td>{$vo.real_num}</td>
+                        <td>{$vo.currency_code}</td>
+                        <!--<td>{$vo.created_by}</td>-->
+                        <td>{$vo.batch_no}</td>
+                        <td>{$vo.apply_time}</td>
+                        <td>
+                            <a href="javascript:;" id="showbox" data-am-modal="{target: '#my-popups'}" style="display: none;"></a>
+                            <if condition="$vo['status'] eq 'MANUAL'">
+                                <div class="btn_status_box" style="float:left;" data-id="{$vo.id}">
+                                    <a class="am-btn am-btn-default am-btn-xs am-text-success am-round" title="申请重发" onclick="resend('{$vo.batch_no}',this);">重发</a>
+                                    <a class="am-btn am-btn-default am-btn-xs am-text-success am-round" title="标记已发送" onclick="remarksended('{$vo.batch_no}',this);">已发</a>
+                                </div>
+                                <else/>
+                                <a class="am-btn am-btn-default am-btn-xs am-text-success am-round" onclick="showdetail({$vo['id']});">查看</a>
+                            </if>
+                        </td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>
+        <script type="text/javascript">
+            function showdetail(id)
+            {
+                $.ajax({
+                    'url':"{:U('detail')}",
+                    'type':"POST",
+                    'data':{'id':id},
+                    success:function (msg) {
+                        //console.log(msg);
+                        for(var i in msg){
+                            $("#detail_"+i).html(msg[i]);
+                            // console.dir(i);//输出姓名
+                            // console.dir(msg[i]);//输出分数
+                        }
+                        $("#showbox").click();
+                    }
+                })
+            }
+            //重新发送
+            function resend(batchno,e)
+            {
+                var id = $(e).parent('.btn_status_box').attr("data-id");
+                $.ajax({
+                    'url':"{:U('applyResend')}",
+                    'type':"POST",
+                    'data':{'batch_no':batchno},
+                    success:function(msg){
+                        alert(msg.res_info);
+                        if(msg.result == 0)
+                        {
+                            var html = '<a class="am-btn am-btn-default am-btn-xs am-text-success am-round" onclick="showdetail('+id+');">查看</a>';
+                            $(e).parent('.btn_status_box').html(html);
+                        }
+                    }
+                })
+            }
+            //标记为已发送
+            function remarksended(batchno,e)
+            {
+                var id = $(e).parent('.btn_status_box').attr("data-id");
+                var txhash = prompt("要标记为已发送,请手动录入tx_hash的值","请在这里输入tx_hash");
+                if(txhash =='' || txhash == null || txhash == undefined)
+                {
+                    alert('tx_hash不能为空');
+                    return false;
+                }
+                $.ajax({
+                    'url':"{:U('applySended')}",
+                    'type':"POST",
+                    'data':{'batch_no':batchno,'tx_hash':txhash},
+                    success:function(msg){
+                        alert(msg.res_info);
+                        if(msg.result == 0)
+                        {
+                            var html = '<a class="am-btn am-btn-default am-btn-xs am-text-success am-round" onclick="showdetail('+id+');">查看</a>';
+                            $(e).parent('.btn_status_box').html(html);
+                        }
+                    }
+                })
+            }
+        </script>

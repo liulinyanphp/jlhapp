@@ -1,0 +1,79 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    进货单列表<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                进货单列表
+            </ul>
+            <dl>
+                <a href="{:U('add')}" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" data-am-modal="{target: '#my-popup'}">
+                    添加进货单
+                </a>
+            </dl>
+        </div>
+        <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+            <form method="get" action="{:U('list')}">
+                <dl>
+                    进货单号：<input type="text" class="am-input-sm" value="{$param.purchaseId}" name="purchaseId" placeholder="请输入您查找的进货单号">
+                </dl>
+                <dl>
+                    币种编码：<input type="text" class="am-input-sm" name="currencyName" value="{$param.currencyName}" placeholder="请输入您查找的币种编码">
+                </dl>
+                <dl>
+                    收货地址：<input type="text" class="am-input-sm" name="receiveAddr" value="{$param.receiveAddr}" placeholder="请输入您查找的收货地址">
+                </dl>
+                <dl>
+                    进货类型：
+                    <select name="purchaseType">
+                        <foreach name="PurchaseTypeSearch" item="obj" key="key">
+                            <option value="{$key}" <if condition="$key eq $param['purchaseType']">selected="selected"</if>>{$obj}</option>
+                        </foreach>
+                    </select>
+                </dl>
+                <dl>
+                    <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                </dl>
+            </form>
+        </div>
+        <form class="am-form am-g" name="myform" id="myform" method="post">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <th>进货编号</th>
+                <th>币种编号</th>
+                <th>进货数量</th>
+                <th>剩余数量</th>
+                <th>进货价格</th>
+                <th>收货地址</th>
+                <th>进货类型</th>
+                <th>操作人</th>
+                <th>操作时间</th>
+                </thead>
+                <tbody>
+                <volist name="stockList" id="vo">
+                    <tr>
+                        <td><a href="{:U('logList',array('purchase_id'=>$vo['purchase_id']))}">{$vo.purchase_id}</a></td>
+                        <td>{$vo.currency_code}</td>
+                        <td>{$vo.purchase_num}</td>
+                        <td>{$vo.remain_num}</td>
+                        <td>{$vo.curr_price}</td>
+                        <td>{$vo.receive_addr}</td>
+                        <td>{$PurchaseTypeSearch[$vo['purchase_type']]}</td>
+                        <td>{$vo.created_by}</td>
+                        <td>{$vo.created_date}</td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>

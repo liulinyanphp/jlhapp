@@ -1,0 +1,104 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 提现管理 </li>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">提现列表
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">提现明细</ul>
+            <dl class="am-icon-home" style="float: right;"> 当前位置：
+                <a href="{:U('list')}">提现列表</a> > 提现明细
+            </dl>
+        </div>
+        <div class="fbneirong">
+            <form class="am-form" id="myform">
+                <div class="am-form-group am-cf">
+                    <div class="zuo">交易号：</div>
+                    <div class="zuo" {$div}>{$data.trade_no}</div>
+                    <div class="zuo">用户编号：</div>
+                    <div class="zuo" {$div}>{$data.uid}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">基础状态：</div>
+                    <div class="zuo" {$div}>{$PresentStatusSearch[$data['status']]}</div>
+                    <div class="zuo">平台编码：</div>
+                    <div class="zuo" {$div}>{$data.plat_code}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">真实姓名：</div>
+                    <div class="zuo" {$div}>{$data.real_name}</div>
+                    <div class="zuo">开户行：</div>
+                    <div class="zuo" {$div}>{$data.bank}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">开户支行：</div>
+                    <div class="zuo" {$div}>{$data.branch_bank}</div>
+                    <div class="zuo">银行卡号：</div>
+                    <div class="zuo" {$div}>{$data.bank_card_no}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">币种编号：</div>
+                    <div class="zuo" {$div}>{$data.currency_code}</div>
+                    <div class="zuo">出售数量：</div>
+                    <div class="zuo" {$div}>{$data.sell_num}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">售卖价格：</div>
+                    <div class="zuo" {$div}>{$data.curr_price}</div>
+                    <div class="zuo">提现金额：</div>
+                    <div class="zuo" {$div}>{$data.apply_amount}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">手续费：</div>
+                    <div class="zuo" {$div}>{$data.fee_amount}</div>
+                    <div class="zuo">到账金额：</div>
+                    <div class="zuo" {$div}>{$data.real_amount}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">打款银行名称：</div>
+                    <div class="zuo" {$div}>{$data.pay_bank}</div>
+                    <div class="zuo">打款银行卡号：</div>
+                    <div class="zuo" {$div}>{$data.pay_bank_card_no}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">打款金额：</div>
+                    <div class="zuo" {$div}>{$data.pay_amout}</div>
+                    <div class="zuo">银行流水号：</div>
+                    <div class="zuo" {$div}>{$data.bank_trans_no}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">申请时间：</div>
+                    <div class="zuo" {$div}>{$data.apply_time}</div>
+                    <div class="zuo">到账时间：</div>
+                    <div class="zuo" {$div}>{$data.payment_time}</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">操作人id：</div>
+                    <div class="zuo" {$div}>{$data.operator_id}</div>
+                    <div class="zuo">操作人员姓名：</div>
+                    <div class="zuo" {$div}>{$data.operator_name }</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">创建人：</div>
+                    <div class="zuo" {$div}>{$data.created_by }</div>
+                    <div class="zuo">更新人：</div>
+                    <div class="zuo" {$div}>{$data.last_modified_by }</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">创建时间：</div>
+                    <div class="zuo" {$div}>{$data.created_date }</div>
+                    <div class="zuo">更新时间：</div>
+                    <div class="zuo" {$div}>{$data.last_modified_date }</div>
+                </div>
+                <div class="am-form-group am-cf">
+                    <div class="zuo">回收进货单号：</div>
+                    <div class="zuo" {$div}>{$data.recovery_purchase_id}</div>
+                </div>
+            </form>
+        </div>

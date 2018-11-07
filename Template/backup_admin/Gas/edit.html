@@ -1,0 +1,76 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 编辑{$edit_title}手续费</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('rate_inlist')}">{$edit_title}手续费管理</a> > 编辑平台{$edit_title}手续费
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">平台名称：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" value="{$datainfo.plat_code}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">币种编码：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" value="{$datainfo.currency_code}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">手续费百分比：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" id="doc-ipt-email-1" name="percent" placeholder="请输入手续费比例,精确到小数点后两位" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\u4e00-\u9fa5]/g,''))" onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')" value="{$datainfo.percent}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">固定手续费：</div>
+                        <div class="you">
+                            <input type="text" class="am-input-sm" id="doc-ipt-email-2" name="state_value" placeholder="请输入汇率值,精确到小数点后两位" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\u4e00-\u9fa5]/g,''))" onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')" value="{$datainfo.state_value}">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">是否开启：</div>
+                        <div class="you">
+                            <if condition="$datainfo.is_used gt 0 ">
+                            <input type="radio" name="is_used" value="1" checked="checked" />开启
+                            <input type="radio" name="is_used" value="0" />关闭
+                            <else/>
+                            <input type="radio" name="is_used" value="1" />开启
+                            <input type="radio" name="is_used" value="0" checked="checked" />关闭
+                            </if>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="hidden" name="id" value="{$datainfo.id}">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="提交" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('edit')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+            </script>

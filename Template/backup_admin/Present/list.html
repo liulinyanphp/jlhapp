@@ -1,0 +1,87 @@
+<div class=" admin-content">
+    <div class="daohang">
+        <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                    用户提现列表<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="admin-biaogelist">
+        <div class="listbiaoti am-cf">
+            <ul class="am-icon-flag on">
+                用户提现列表
+            </ul>
+        </div>
+        <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+            <form method="get" action="{:U('list')}">
+                <dl>
+                    交易号：<input type="text" class="am-input-sm" name="trade_no" value="{$param.trade_no}" placeholder="请输入您查找的提现交易号">
+                </dl>
+                <dl>
+                    用户姓名：<input type="text" class="am-input-sm" name="real_name" value="{$param.real_name}" placeholder="请输入您查找的用户姓名">
+                </dl>
+                <dl>
+                    银行卡号：<input type="text" class="am-input-sm" name="bank_card_no" value="{$param.bank_card_no}" placeholder="请输入您查找的银行卡号">
+                </dl>
+                <dl>
+                    提现状态：
+                    <select name="status">
+                            <option value="">请选择状态</option>
+                        <foreach name="PresentStatusSearch" key="key" item="obj">
+                            <option value="{$key}" <if condition="$key eq $param['status']">selected="selected"</if>>{$obj}</option>
+                        </foreach>
+                    </select>
+                </dl>
+                <dl>
+                    <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                </dl>
+            </form>
+        </div>
+        <form class="am-form am-g" name="myform" id="myform" method="post">
+            <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                <th>交易号</th>
+                <th>用户编号</th>
+                <th>提现状态</th>
+                <th>币种编号</th>
+                <th>提现数量</th>
+                <th>售卖单价</th>
+                <th>提现金额</th>
+                <th>手续费</th>
+                <th>到账金额</th>
+                <th>操作人</th>
+                <th>申请时间</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                <volist name="presentList" id="vo">
+                    <tr>
+                        <td>{$vo.trade_no}</td>
+                        <td>{$vo.uid}</td>
+                        <td>{$PresentStatusSearch[$vo['status']]}</td>
+                        <td>{$vo.currency_code}</td>
+                        <td>{$vo.sell_num}</td>
+                        <td>{$vo.curr_price}</td>
+                        <td>{$vo.apply_amount}</td>
+                        <td>{$vo.fee_amount}</td>
+                        <td>{$vo.real_amount}</td>
+                        <td>{$vo.created_by}</td>
+                        <td>{$vo.apply_time}</td>
+                        <td>
+                            <if condition="$is_checked  eq $vo['status']">
+                                <a href="{:U('edit',array('tradeNo'=>$vo['trade_no']))}">审核</a>
+                                <else/>
+                                <a href="{:U('detail',array('tradeNo'=>$vo['trade_no']))}">查看</a>
+                            </if>
+                        </td>
+                    </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+        </form>

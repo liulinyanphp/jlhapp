@@ -1,0 +1,68 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 查看投研资讯</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                   投研信息管理 > <a href="{:U('report')}">返回举报信息列表</a> > 查看投研信息
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">投研编码：</div>
+                        <div class="zuo" style="text-align: left;">
+                            {$datainfo.rand_code}
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">标题：</div>
+                        <div class="you" style="padding-top: 5px;">{$datainfo.title}</div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">缩略图：</div>
+                        <div class="you">
+                            <img src="{$datainfo.img_url}" class="adimgshow" width="40" height="30"  style="visibility:visible;">
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">发布时间：</div>
+                        <div class="zuo" style="text-align: left;">
+                            {$datainfo.published_time}
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">发布状态：</div>
+                        <div class="you" style="padding-top: 5px;">
+                            <if condition="$datainfo['is_published'] eq 0 ">
+                                未发布
+                            <else/>
+                                已经发布
+                            </if>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">作者：</div>
+                        <div class="zuo" style="text-align: left;">
+                            {$datainfo.author}
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">投研内容：</div>
+                        <div class="you">
+                            <script id="editor"  type="text/plain" name="content" tyle="width:100%;height:500px;">
+                                {$datainfo.content|htmlspecialchars_decode}
+                            </script>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                var ue = UE.getEditor('editor');
+            </script>

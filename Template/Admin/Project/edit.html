@@ -1,0 +1,367 @@
+<div class="am-modal am-modal-no-btn" tabindex="-2" id="img-modal" style="width:auto">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            <a href="javascript: void(0)" style="top:-3px;" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd" style="padding:2px; 0px;">
+            <img src="" id="imgshowdiv">
+        </div>
+    </div>
+</div>
+<div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 编辑项目</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('list')}">项目管理</a> > 编辑项目
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform" method="post" onsubmit="return saveForm();" data-am-validator>
+                    <fieldset>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">
+                                <label for="doc-vld-name-2">项目编码：</label>
+                            </div>
+                            <div class="you">
+                                <input type="text" name="randCode" id="hidden_randCode" minlength="4" value="{$proInfo.rand_code}" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">项目类型：</div>
+                            <div class="you">
+                                <select data-am-selected="{btnWidth:100%, btnSize:'sm', btnStyle: 'default'}" name="type" id="sel_protype">
+                                    <foreach name="proType" key="key" item="typeName">
+                                        <if condition="$key eq $proInfo['type']">
+                                            <option value="{$key}">{$typeName}</option>
+                                        </if>
+                                    </foreach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">
+                                <label for="doc-vld-name-2">项目名称：</label>
+                            </div>
+                            <div class="you">
+                                <input type="text" id="doc-vld-name-2" name="name" minlength="4" value="{$proInfo.name}" required/>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">
+                                <label for="doc-vld-name-2">项目全称：</label>
+                            </div>
+                            <div class="you">
+                                <input type="text" id="doc-vld-name-3" name="full_name" minlength="4" value="{$proInfo.full_name}" placeholder="请输入项目全名称（至少 4 个字符）" required/>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">项目logo：</div>
+                            <div class="you">
+                                <button type="button" class="button button-small btnupimg" onClick="toupload(this)">Go↑</button>
+                                <img src="{$proInfo.logo_img_url}" class="proimgshow" width="40" height="30" onClick="reupload(this)">
+                                <input type="hidden" name="logo_img_url" value="{$proInfo.logo_img_url}" class="proimgpath" />
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">
+                                <label for="doc-vld-ta-2">项目简介：</label>
+                            </div>
+                            <div class="you">
+                                <textarea id="doc-vld-ta-2" name="introduction" minlength="10" maxlength="100">{$proInfo.introduction}</textarea>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">项目详情：</div>
+                            <div class="you">
+                                <script id="editor"  type="text/plain" name="content" tyle="width:100%;height:500px;">{$proInfo.content|htmlspecialchars_decode}</script>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">
+                                <label for="doc-vld-url-2">官网地址：</label>
+                            </div>
+                            <div class="you">
+                                <input type="url" id="doc-vld-url-2" name="website_url" value="{$proInfo.website_url}" placeholder="请输入项目官网地址" required/>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">合约地址：</div>
+                            <div class="you">
+                                <input type="text" class="am-input-sm"  name="contract_address" value="{$proInfo.contract_address}" placeholder="请输入项目合约地址">
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">项目方地址：</div>
+                            <div class="you">
+                                <input type="text" class="am-input-sm"  name="project_address" readonly="readonly" value="{$proInfo.project_address}" placeholder="请输入项目方地址">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">项目评级：</div>
+                            <div class="you">
+                                <select data-am-selected="{btnWidth:100%, btnSize:'sm', btnStyle: 'default'}" name="rating">
+                                    <foreach name="proRating" key="key" item="ratingName">
+                                        <option value="{$ratingName}" <if condition="$ratingName eq $proInfo['rating']"> selected="selected"</if>>{$ratingName}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">项目简评：</div>
+                            <div class="you">
+                                <input type="text" class="am-input-sm"  name="comment" value="{$proInfo.comment}" placeholder="请输入项目简评">
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">Token分配方案：</div>
+                            <div class="you" style="padding-top: 5px;">
+                                <foreach name="tokenCfg" key="key" item="tokenObj">
+                                    <if condition="$key%3 eq 1 && $key gt 0">
+                                        <br/>
+                                    </if>
+                                    <label class="am-checkbox-inline">
+                                        <if condition="in_array($key,$mappingCfg)">
+                                            <input type="checkbox" checked="checked" name="token_mapping[]" value="{$key}" data-am-ucheck checked>{$tokenObj}
+                                            <else/>
+                                            <input type="checkbox" name="token_mapping[]" value="{$key}" data-am-ucheck> {$tokenObj}
+                                        </if>
+                                    </label>
+                                </foreach>
+                            </div>
+                        </div>
+                        <if condition="$proInfo.token_allocation_imgurl neq NULL">
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">Token分配图：</div>
+                                <div class="you">
+                                    <img src="{$proInfo['token_allocation_imgurl']}" class="am-icon-adn" style="cursor: pointer;" width="40" height="30">
+                                </div>
+                            </div>
+                        </if>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">投资机构：</div>
+                            <div class="you" style="padding-top: 5px;">
+                                <foreach name="investmentCfg" key="key" item="investmentObj">
+                                    <if condition="$key%3 eq 1 && $key gt 0">
+                                        <br/>
+                                    </if>
+                                    <label class="am-checkbox-inline">
+                                        <if condition="in_array($key,$mappingCfg)">
+                                            <input type="checkbox" checked="checked" name="investment_mapping[]" value="{$key}" data-am-ucheck checked>{$investmentObj.name}
+                                            <else/>
+                                            <input type="checkbox" name="investment_mapping[]" value="{$key}" data-am-ucheck> {$investmentObj.name}
+                                        </if>
+
+                                    </label>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">众筹渠道：</div>
+                            <div class="you" style="padding-top: 5px;">
+                                <foreach name="channelCfg" key="key" item="channelObj">
+                                    <if condition="$key%3 eq 1 && $key gt 0">
+                                        <br/>
+                                    </if>
+                                    <label class="am-checkbox-inline">
+                                        <if condition="in_array($key,$mappingCfg)">
+                                            <input type="checkbox" checked="checked" name="channel_mapping[]" value="{$key}" data-am-ucheck checked>{$channelObj.name}
+                                            <else/>
+                                            <input type="checkbox" name="channel_mapping[]" value="{$key}" data-am-ucheck> {$channelObj.name}
+                                        </if>
+                                    </label>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">竞品：</div>
+                            <div class="you" style="padding-top: 5px;">
+                                <foreach name="competitorCfg" key="key" item="competitorObj">
+                                    <if condition="$key%3 eq 1 && $key gt 0">
+                                        <br/>
+                                    </if>
+                                    <label class="am-checkbox-inline">
+                                        <if condition="in_array($key,$mappingCfg)">
+                                            <input type="checkbox" checked="checked" name="competitor_mapping[]" value="{$key}" data-am-ucheck checked>{$competitorObj}
+                                            <else/>
+                                            <input type="checkbox" name="competitor_mapping[]" value="{$key}" data-am-ucheck> {$competitorObj}
+                                        </if>
+                                    </label>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-cf">
+                            <div class="zuo">行业分析：</div>
+                            <div class="you">
+                                <foreach name="analysisCfg" key="key" item="analysisObj">
+                                    <label class="am-radio am-secondary">
+                                        <input type="radio" name="analysis_mapping" value="{$key}" data-am-ucheck <if condition="in_array($key,$mappingCfg)">checked="checked"</if>>{$analysisObj}
+                                    </label>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div id="crowd_box">
+                            <!--众筹追加模块-->
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">众筹开始时间：</div>
+                                <div class="you  am-form-icon">
+                                    <i class="am-icon-calendar"></i>
+                                    <input type="text" class="am-form-field" name="crowd_start_time" value="{$proInfo.crowd_start_time}" id='datetimepicker1' placeholder="请输入众筹开始时间">
+                                </div>
+                            </div>
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">众筹结束时间：</div>
+                                <div class="you am-form-icon">
+                                    <i class="am-icon-calendar"></i>
+                                    <input type="text" class="am-form-field" name="crowd_end_time" value="{$proInfo.crowd_end_time}" id='datetimepicker2' placeholder="请输入众筹结束时间">
+                                </div>
+                            </div>
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">众筹单位：</div>
+                                <div class="you">
+                                    <select data-am-selected="{btnSize: 'sm'}" name="crowd_fi_unit">
+                                        <foreach name="FiUnit" key="key" item="unitName">
+                                            <option value="{$unitName}" <if condition="$proInfo['crowd_fi_unit'] eq $unitName"> selected="selectec" </if>> {$unitName}</option>
+                                        </foreach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">投资比例：</div>
+                                <div class="you">
+                                    <input type="text" class="am-input-sm"  name="crowd_percentage" value="{$proInfo.crowd_percentage}" placeholder="请输入投资比例的值，如一个ETH 兑换为500，那这里就输入500">
+                                </div>
+                            </div>
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">融资规模：</div>
+                                <div class="you">
+                                    <input type="text" class="am-input-sm"  name="crowd_fi_amount" value="{$proInfo.crowd_fi_amount}" placeholder="请输入融资规模/众筹总额">
+                                </div>
+                            </div>
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">共识成本：</div>
+                                <div class="you">
+                                    <input type="text" class="am-input-sm"  name="crowd_consensus_cost" value="{$proInfo.crowd_consensus_cost}" placeholder="请输入众筹共识成本单位是人名币">
+                                </div>
+                            </div>
+                            <!--<div class="am-form-group am-cf">-->
+                            <!--<div class="zuo">众筹优惠：</div>-->
+                            <!--<div class="you">-->
+                            <!--<input type="text" class="am-input-sm"  name="crowd_coupon_id" value="{$htmlData.crowd_coupon_id}" placeholder="请选择众筹优惠">-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">众筹细则：</div>
+                                <div class="you">
+                                    <textarea id="doc-vld-ta-9" name="crowd_sale_detail" minlength="10" maxlength="100">{$proInfo.crowd_sale_detail}</textarea>
+                                </div>
+                            </div>
+                            <div class="am-form-group am-cf">
+                                <div class="zuo">众筹状态：</div>
+                                <div class="you" style="padding-top: 5px;">
+                                    <label class="am-radio-inline">
+                                        <input type="radio"  value="BEGIN" name="crowd_status" <if condition="$proInfo['crowd_status'] eq 'BEGIN' "> checked="checked" </if>> 即将开始
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" value="CROWDING"  name="crowd_status" <if condition="$proInfo['crowd_status'] eq 'CROWDING' "> checked="checked" </if>> 众筹中
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" value="CROWDED"  name="crowd_status" <if condition="$proInfo['crowd_status'] eq 'CROWDED' "> checked="checked" </if>> 众筹结束
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!--众筹结束模块-->
+                        </div>
+                        <div id="order_box">
+                            <!--预约开始模块-->
+                            <!--预约结束模块-->
+                        </div>
+                        <div class="am-form-group am-cf" id="lastdiv">
+                            <div class="you" style="margin-left: 11%;">
+                                <button class="am-btn am-btn-secondary am-radius" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <form method="post" id="upform" action="{:U('Admin/project/UploadImg')}" enctype="multipart/form-data" style="display:none;">
+                    <input type="file" id="imgupload" name="upimg" />
+                </form>
+            </div>
+            <script type="text/javascript">
+                var ue = UE.getEditor('editor');
+
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('edit')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            //console.log(msg);
+                            alert(msg.message);
+                            if(msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                    return false;
+                }
+                //上传图片
+                function toupload(obj)
+                {
+                    //定义点击按钮的索引值
+                    $("#imgupload").trigger("click");
+                }
+
+                $(function() {
+                    //on('click', ‘a’, function)
+                    //$('#imgupload').on('click','change',function(){
+                    $('#imgupload').live('change', function () {
+                        //模拟表单提交
+                        var form = new FormData(document.getElementById("upform"));
+                        $.ajax({
+                            url: "{:U('Admin/Project/uploadimg')}",
+                            type: "post",
+                            data: form,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                console.log(data);
+                                //如果图片成功则把图片的路径赋值给缩略图显示的地方
+                                //定义一个变量表示是第几个按钮上传
+                                var path = data.imgpath;
+                                $(".proimgshow:eq(0)").attr('src',data.imgpath);
+                                $(".proimgpath:eq(0)").val(path);
+                                $(".proimgshow:eq(0)").css('visibility','visible');
+                                $('#imgupload').val('');
+                            },
+                            error: function (e) {
+                                //alert("错误！！");
+                                //window.clearInterval(timer);
+                            }
+                        });
+                    });
+                    //load_proTypeBox();
+
+
+                    var $modal = $('#img-modal');
+                    $('.am-icon-adn').on('click', function(e) {
+                        var $target = $(e.target);
+                        $("#imgshowdiv").attr('src',$target.attr('src'));
+                        $modal.modal();
+                    });
+
+                    $('#datetimepicker1').datetimepicker();
+                    $('#datetimepicker2').datetimepicker();
+                });
+            </script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <script src="{$base_path}/js/jquery.min.js"></script>
+</head>
+
+<body data-type="login" class="theme-black">
+   <div id="wrap">
+        <a id="return" href="{:U('role_list','','')}">返回</a>
+        <form action="{:U('access_handle')}" method="post">
+            <table class="table">
+                <foreach name="node" item="app">
+                    <div class="app">
+                        <p>
+                            <strong>{$app.title}</strong>
+                            <input type="checkbox" name="access[]" value="{$app.id}_1" level="1" <if condition="$app['access'] eq 1">checked="checked"</if>>
+                        </p>
+                    <foreach name="app.child" item="controller">
+                        <div class="app_child">
+                            <dl class="controller">
+                                <dt>
+                                    <strong>{$controller.title}</strong>
+                                    <input type="checkbox" name="access[]" value="{$controller.id}_2" level="2" <if condition="$controller['access'] eq 1">checked="checked"</if>>
+                                </dt>
+                            </dl>
+                            <foreach name="controller.child" item="method">
+                                <span class="method">
+                                    <strong>{$method.title}</strong>
+                                    <input type="checkbox" name="access[]" value="{$method.id}_3" level="3" <if condition="$method['access'] eq 1">checked="checked"</if>>
+                                </span>    
+                            </foreach>
+                            <div style="clear:both"></div>
+                        </div>
+                    </foreach>
+                    </div>    
+                </foreach>
+            </table>
+            <input type="submit" value="提交"  style="display: block; margin:0 auto; cursor:pointer">
+            <input type="hidden" name="rid" value="{$rid}">
+        </form>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('input[level=1]').click(function(){
+            var inputs = $(this).parents('.app').find('input');
+            $(this).prop('checked') == true ? inputs.prop('checked', true) : inputs.prop('checked', false);
+         });
+         $('input[level=2]').click(function(){
+             var inputs = $(this).parents('.app_child').find('input');
+             $(this).prop('checked') == true ? inputs.prop('checked', true) : inputs.prop('checked', false);
+         });
+    });
+</script>
+</html>

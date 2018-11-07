@@ -1,0 +1,88 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+            <li>
+                <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">
+                充值管理
+                </button>
+            </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on">
+                当前位置： 充值列表
+            </div>
+            <div class="listbiaoti am-cf" style="margin-bottom: 40px;">
+                <form method="get" action="{:U('purchase_list')}">
+                    <dl>
+                        交易号: <input type="text" class="am-input-sm" name="tradeNo" value="{$param.tradeNo}" placeholder="请输入您查找的交易号">
+                    </dl>
+                    <dl>
+                        交易参考号：<input type="text" class="am-input-sm" name="referenceNo" value="{$param.referenceNo}" placeholder="请输入您交易参考号">
+                    </dl>
+                    <dl>
+                        银行卡：<input type="text" class="am-input-sm" name="bankCardNo" value="{$param.bankCardNo}" placeholder="请输入您的收款银行卡号">
+                    </dl>
+                    <dl>
+                        订单状态：
+                        <select  name="status">
+                            <foreach name="PurchaseCoinRecordStatus" key="key" item="obj">
+                                <option value="{$key}" <if condition="$key eq $param['status']">selected="selected"</if>>{$obj}</option>
+                            </foreach>
+                        </select>
+                    </dl>
+                    <dl>
+                        <input type="submit" class="am-btn am-btn-success am-radius" value="搜索" />
+                    </dl>
+                </form>
+            </div>
+            <form class="am-form am-g" name="myform" id="myform" method="post">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <th>交易号</th>
+                    <th>平台编码</th>
+                    <th>充值状态</th>
+                    <th>银行名称</th>
+                    <th>银行卡号</th>
+                    <th>充值金额</th>
+                    <th>成交汇率</th>
+                    <th>成交数量</th>
+                    <th>充值参考号</th>
+                    <th>生成时间</th>
+                    <th>操作</th>
+                </thead>
+                <tbody>
+                <volist name="purchase_list" id="vo">
+                <tr>
+                    <td>{$vo.trade_no}</td>
+                    <td>{$vo.plat_code}</td>
+                    <td>{$PurchaseCoinRecordStatus[$vo['status']]}</td>
+                    <td>{$vo.bank_name}</td>
+                    <td>{$vo.bank_card_no}</td>
+                    <td>{$vo.amount}</td>
+                    <td>{$vo.curr_price}</td>
+                    <td>{$vo.num}</td>
+                    <td>{$vo.reference_no}</td>
+                    <td>{$vo.created_date}</td>
+                    <td>
+                    <if condition="$vo.status neq $submitted">已处理<else/>
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <a class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}"
+                                   href="{:U('edit',array('tradeNo'=>$vo['trade_no']))}">
+                                    <span class="am-icon-pencil-square-o"></span>审核
+                                </a>
+                            </div>
+                        </div>
+                    </if>
+                    </td>
+                </tr>
+                </volist>
+
+                </tbody>
+            </table>
+            <ul class="am-pagination am-fr">
+                {$page}
+            </ul>
+            </form>

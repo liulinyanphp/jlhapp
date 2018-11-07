@@ -1,0 +1,66 @@
+    <div class=" admin-content"> 
+        <div class="daohang">
+          <ul>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 权限列表 </li>
+            <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">角色授权<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+          </ul>
+    </div>
+<div class="admin-biaogelist">
+  
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on">角色授权</ul>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">角色授权</a></dl>
+    </div>
+    <div class="fbneirong">
+    <form action="{:U('access_handle')}" class="am-form" method="post">
+        <div class="am-form-group am-cf">
+            <table class="table">
+            <foreach name="node" item="app">
+                <div class="app">
+                    <p>
+                        <strong>{$app.title}</strong>
+                        <input type="checkbox" name="access[]" value="{$app.id}_1" level="1" <if condition="$app['access'] eq 1">checked="checked"</if>>
+                    </p>
+                <foreach name="app.child" item="controller">
+                    <div class="app_child" style="margin-left: 30px; margin-top: 10px; margin-bottom: 10px;">
+                        <dl class="controller" style="margin-bottom: 20px;">
+                            <dt>
+                                <strong>{$controller.title}</strong>
+                                <input type="checkbox" name="access[]" value="{$controller.id}_2" level="2" <if condition="$controller['access'] eq 1">checked="checked"</if>>
+                            </dt>
+                        </dl>
+                        <foreach name="controller.child" item="method">
+                            <span class="method" style="margin-left: 30px; margin-top: 30px;">
+                                <strong>{$method.title}</strong>
+                                <input type="checkbox" name="access[]" value="{$method.id}_3" level="3" <if condition="$method['access'] eq 1">checked="checked"</if>>
+                            </span>    
+                        </foreach>
+                        <div style="clear:both"></div>
+                    </div>
+                </foreach>
+                </div>    
+            </foreach>
+        </table>
+        </div>
+        
+        <input type="submit" value="提交"  style="display: block; margin:0 auto; cursor:pointer">
+        <input type="hidden" name="rid" value="{$rid}">
+        <!--<div class="am-form-group am-cf">-->
+          <!--<div class="you" style="margin-left: 11%;">-->
+              <!--<input type="submit" class="am-btn am-btn-success am-radius" value="提交修改" />-->
+          <!--</div>-->
+        <!--</div>-->
+      </form>
+    </div>
+    <script>
+        $(function(){
+            $('input[level=1]').click(function(){
+                var inputs = $(this).parents('.app').find('input');
+                $(this).prop('checked') == true ? inputs.prop('checked', true) : inputs.prop('checked', false);
+             });
+             $('input[level=2]').click(function(){
+                 var inputs = $(this).parents('.app_child').find('input');
+                 $(this).prop('checked') == true ? inputs.prop('checked', true) : inputs.prop('checked', false);
+             });
+        });
+    </script>

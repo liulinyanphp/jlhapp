@@ -1,0 +1,55 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
+                <li>
+                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">汇率管理
+                        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 汇率设置日志</ul>
+                <dl class="am-icon-home" style="float: right;">当前位置： <a href="{:U('index')}">汇率设置</a> > 
+                    汇率设置日志
+                </dl>
+                <!--这里打开的是新页面-->
+            </div>
+            <!--列表显示页面-->
+            <form class="am-form am-g">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <thead>
+                    <tr class="am-success">
+                    <th class="table-id">ID</th>
+                    <th class="table-title">银行卡类型</th>
+                    <th class="table-title">银行卡名称</th>
+                    <th class="table-type">银行卡卡号</th>
+                    <th class="table-type">状态</th>
+                    <th class="table-author am-hide-sm-only">操作说明</th>
+                    <th class="table-author am-hide-sm-only">操作人</th>
+                    <th class="table-author am-hide-sm-only">操作时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="loglist" id="loginfo">
+                        <tr>
+                            <td>{$loginfo.lgid}</td>
+                            <td>{$banktype[$loginfo['bank_type']]}</td>
+                            <td>{$loginfo.bank_name}</td>
+                            <td>{$loginfo.bank_card_no}</td>
+                            <td class="am-hide-sm-only">
+                                <if condition="$loginfo['status'] eq 1">激活<else/>冻结</if>
+                            </td>
+                            <td class="am-hide-sm-only">{$loginfo.remark}</td>
+                            <td class="am-hide-sm-only">{$loginfo.uname}</td>
+                            <td class="am-hide-sm-only">{$loginfo.addtime|date="Y-m-d H:i:s",###}
+                        </tr>
+                    </volist>
+                </tbody>
+                </table>
+                <ul class="am-pagination am-fr">
+                    {$pager}
+                </ul>
+            </form>

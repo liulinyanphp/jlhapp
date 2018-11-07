@@ -1,0 +1,62 @@
+    <div class=" admin-content">
+        <div class="daohang">
+            <ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="admin-biaogelist">   	
+            <div class="listbiaoti am-cf">
+                <ul class="am-icon-flag on"> 编辑价格获取配置信息（如需改变项目,请删除之后重新添加）</ul>
+                <dl class="am-icon-home" style="float: right;"> 当前位置： 
+                    <a href="{:U('priceConfig')}">token价格配置列表</a> > 修改项目价格获取配置信息
+                </dl>
+            </div>
+            <div class="fbneirong">
+                <form class="am-form" id="myform">
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">项目编码：</div>
+                        <div class="you">
+                            <input type="text" id="doc-vld-name-2" name="randCode" value="{$dataInfo.pro_rand_code}" readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">价格来源：</div>
+                        <div class="you">
+                            <select data-am-selected="{btnWidth:100%, btnSize:'sm', btnStyle: 'default'}" name="pro_price_getsource">
+                                <option value="FEIXIAOJAO" <if condition="$dataInfo['pro_price_getsource'] eq 'FEIXIAOJAO' ">selected="selected" </if> > 非小号</option>
+                                <option value="AICOIN" <if condition="$dataInfo['pro_price_getsource'] eq 'AICOIN' ">selected="selected"</if> >aicoin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-form-group am-cf">
+                        <div class="zuo">价格别名：</div>
+                        <div class="you">
+                            <input type="text" name="pro_alias_name" value="{$dataInfo.pro_alias_name}" style="width: 200px">
+                        </div>
+                    </div>
+                                        <div class="am-form-group am-cf" id="lastdiv">
+                        <div class="you" style="margin-left: 11%;">
+                            <input type="button" class="am-btn am-btn-success am-radius" value="修改排序" onclick="saveForm();"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                function saveForm() {
+                    var params1 = $("#myform").serialize();
+                    $.ajax( {
+                        url : "{:U('priceConfigEdit')}",
+                        type : 'POST',
+                        data : params1,
+                        success : function(msg) {
+                            alert(msg.message);
+                            if(msg.result ==0 && msg.data !='')
+                            {
+                                window.location.href = msg.data;
+                            }
+                        }
+                    });
+                }
+            </script>
